@@ -2,4 +2,4 @@
 "projet qui va RÉVOLUTIONNER le ouèbe 2.0"
 
 ## Description
-Projet de réseau social.
+_Le Réseau_ est un projet de réseau social.
