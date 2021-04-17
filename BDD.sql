@@ -73,16 +73,6 @@ CREATE TABLE IMAC_MessagePrive(
 
 
 #------------------------------------------------------------
-# Table: IMAC_Follower
-#------------------------------------------------------------
-
-CREATE TABLE IMAC_Follower(
-        idUtilisateurSuivi Int NOT NULL
-	,CONSTRAINT IMAC_Follower_PK PRIMARY KEY (idUtilisateurSuivi)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: IMAC_AimerPublication
 #------------------------------------------------------------
 
@@ -111,15 +101,15 @@ CREATE TABLE IMAC_AimerCommentaires(
 
 
 #------------------------------------------------------------
-# Table: Suivre
+# Table: IMAC_Suivre
 #------------------------------------------------------------
 
-CREATE TABLE Suivre(
-        idUtilisateurSuivi Int NOT NULL ,
-        id                 Int NOT NULL
-	,CONSTRAINT Suivre_PK PRIMARY KEY (idUtilisateurSuivi,id)
+CREATE TABLE IMAC_Suivre(
+        id                  Int NOT NULL ,
+        id_IMAC_Utilisateur Int NOT NULL
+	,CONSTRAINT IMAC_Suivre_PK PRIMARY KEY (id,id_IMAC_Utilisateur)
 
-	,CONSTRAINT Suivre_IMAC_Follower_FK FOREIGN KEY (idUtilisateurSuivi) REFERENCES IMAC_Follower(idUtilisateurSuivi)
-	,CONSTRAINT Suivre_IMAC_Utilisateur0_FK FOREIGN KEY (id) REFERENCES IMAC_Utilisateur(id)
+	,CONSTRAINT IMAC_Suivre_IMAC_Utilisateur_FK FOREIGN KEY (id) REFERENCES IMAC_Utilisateur(id)
+	,CONSTRAINT IMAC_Suivre_IMAC_Utilisateur0_FK FOREIGN KEY (id_IMAC_Utilisateur) REFERENCES IMAC_Utilisateur(id)
 )ENGINE=InnoDB;
 
