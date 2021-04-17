@@ -2,6 +2,9 @@
 	session_start();
 	include 'bdd.php';
 	include 'header.php';
+	if (isset($_GET['erreur'])){
+		$erreur=$_GET['erreur'];
+	}
 ?>
 	<body>
 		<form method="post" action="inscription.php" enctype="multipart/form-data">
@@ -16,5 +19,18 @@
 			<input type="submit" value="Valider"/>
 			<input type="reset" value="Annuler"/>
 		</form>
+		<p><?php if(isset($erreur)){
+			switch($erreur){
+				case "pseudoETemail":
+					echo "Votre pseudo ET votre email existe déjà.";
+					break;
+				case "pseudo":
+					echo "Votre pseudo existe déjà.";
+					break;
+				case "email":
+					echo "Votre adresse email existe déjà.";
+					break;
+			}
+		}?></p>
 	</body>
 </html>
