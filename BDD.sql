@@ -8,7 +8,7 @@
 #------------------------------------------------------------
 
 CREATE TABLE IMAC_Utilisateur(
-        id            Int NOT NULL ,
+        id            Int NOT NULL AUTO_INCREMENT ,
         pseudo        Varchar (50) NOT NULL ,
         motDePasse    Varchar (50) NOT NULL ,
         prenom        Varchar (50) ,
@@ -26,7 +26,7 @@ CREATE TABLE IMAC_Utilisateur(
 #------------------------------------------------------------
 
 CREATE TABLE IMAC_Commentaire(
-        id                  Int NOT NULL ,
+        id                  Int NOT NULL AUTO_INCREMENT ,
         contenu             Longtext NOT NULL ,
         date                Date NOT NULL ,
         id_IMAC_Utilisateur Int NOT NULL
@@ -41,7 +41,7 @@ CREATE TABLE IMAC_Commentaire(
 #------------------------------------------------------------
 
 CREATE TABLE IMAC_Publication(
-        id                  Int NOT NULL ,
+        id                  Int NOT NULL AUTO_INCREMENT ,
         texte               Longtext ,
         image               Varchar (50) ,
         date                Date NOT NULL ,
@@ -59,7 +59,7 @@ CREATE TABLE IMAC_Publication(
 #------------------------------------------------------------
 
 CREATE TABLE IMAC_MessagePrive(
-        id                           Int NOT NULL ,
+        id                           Int NOT NULL AUTO_INCREMENT ,
         image                        Varchar (50) ,
         date                         Date NOT NULL ,
         texte                        Longtext ,
