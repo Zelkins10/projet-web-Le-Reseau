@@ -31,8 +31,8 @@
 						echo "Vous êtes déjà connecté en tant que ".$_SESSION['pseudo']." !";
 						break;
 				}
+                echo "<p>Pas de compte ? <a href='formInscription.php'>Inscrivez-vous maintenant !</a></p>";
 			}?>
 		</p>
-        <p>Pas de compte ? <a href="formInscription.php">Inscrivez-vous maintenant !</a></p>
 	</body>
 </html>
