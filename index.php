@@ -10,7 +10,7 @@
 				if($_SESSION['pseudo']==admin){
 					echo "Vous êtes l'administrateur.";
 				}
-				echo "<a href='logout.php'>Se Déconnecter</a>";
+				echo "<a href='logout.php'>Se déconnecter</a>";
 			}
 			else{
 				echo "<a href='formInscription.php'>S'inscrire</a><br>";
