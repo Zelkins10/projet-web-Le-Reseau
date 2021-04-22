@@ -1,5 +1,103 @@
 body {
 	min-height: 100%;
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 }
+
+
+.bandeau{
+	font-size:40px;
+	background: blue;
+	display:flex;
+	flex-direction: row;
+}
+
+.logo{
+	height: 50px;
+	width:50px;
+}
+
+p{
+	margin:0px;
+	margin-left:10px;
+}
+
+/* style du profil: photo et infos à côté*/
+
+.profil{
+	display:flex;
+	flex-direction: row;
+}
+
+.photoprofil{
+	height: 100px;
+	width:100px;
+}
+
+.infoprofil{
+	text-align: left;
+	display:flex;
+	flex-direction: column;
+	
+}
+
+.pseudo{
+	font-size: 50px;
+	margin:0px;
+}
+
+.info{
+	font-size: 20px;
+	margin:0px;
+}
+
+/*style du bandeau qui permet d'en savoirs plus sur le profil*/
+
+.savoirplus{
+	background-color: blue;
+}
+
+.boutonprofil{
+	height: 20px;
+	width:100px;
+	background: blue;
+}
+
+/*style fil actualité avec publication: en haut auteur (photo+pseudo) le contenu puis en bas les like et commentaires*/
+
+.fil{
+	background-color: burlywood;
+	
+}
+
+.publication{
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	
+}
+
+.auteur{
+	font-size:15px;
+}
+
+.date{
+	font-size: 10px;
+}
+
+.contenu{
+	font-size: 15px;
+}
+
+.reaction{
+	margin:10px;
+	display: flex;
+	flex-direction: row;
+}
+
+.boutonpublication{
+	height: 20px;
+	width:200px;
+}
+		
