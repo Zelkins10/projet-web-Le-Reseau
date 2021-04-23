@@ -8,7 +8,7 @@
 #------------------------------------------------------------
 
 CREATE TABLE IMAC_Utilisateur(
-        id            Int NOT NULL AUTO_INCREMENT ,
+        id            Int NOT NULL ,
         pseudo        Varchar (50) NOT NULL ,
         motDePasse    Varchar (50) NOT NULL ,
         prenom        Varchar (50) ,
@@ -26,7 +26,7 @@ CREATE TABLE IMAC_Utilisateur(
 #------------------------------------------------------------
 
 CREATE TABLE IMAC_Commentaire(
-        id                  Int NOT NULL AUTO_INCREMENT ,
+        id                  Int NOT NULL ,
         contenu             Longtext NOT NULL ,
         date                Date NOT NULL ,
         id_IMAC_Utilisateur Int NOT NULL
@@ -41,7 +41,7 @@ CREATE TABLE IMAC_Commentaire(
 #------------------------------------------------------------
 
 CREATE TABLE IMAC_Publication(
-        id                  Int NOT NULL AUTO_INCREMENT ,
+        id                  Int NOT NULL ,
         texte               Longtext ,
         image               Varchar (50) ,
         date                Date NOT NULL ,
@@ -59,7 +59,7 @@ CREATE TABLE IMAC_Publication(
 #------------------------------------------------------------
 
 CREATE TABLE IMAC_MessagePrive(
-        id                           Int NOT NULL AUTO_INCREMENT ,
+        id                           Int NOT NULL ,
         image                        Varchar (50) ,
         date                         Date NOT NULL ,
         texte                        Longtext ,
@@ -87,16 +87,16 @@ CREATE TABLE IMAC_AimerPublication(
 
 
 #------------------------------------------------------------
-# Table: IMAC_AimerCommentaires
+# Table: IMAC_AimerCommentaire
 #------------------------------------------------------------
 
-CREATE TABLE IMAC_AimerCommentaires(
+CREATE TABLE IMAC_AimerCommentaire(
         id                  Int NOT NULL ,
         id_IMAC_Utilisateur Int NOT NULL
-	,CONSTRAINT IMAC_AimerCommentaires_PK PRIMARY KEY (id,id_IMAC_Utilisateur)
+	,CONSTRAINT IMAC_AimerCommentaire_PK PRIMARY KEY (id,id_IMAC_Utilisateur)
 
-	,CONSTRAINT IMAC_AimerCommentaires_IMAC_Commentaire_FK FOREIGN KEY (id) REFERENCES IMAC_Commentaire(id)
-	,CONSTRAINT IMAC_AimerCommentaires_IMAC_Utilisateur0_FK FOREIGN KEY (id_IMAC_Utilisateur) REFERENCES IMAC_Utilisateur(id)
+	,CONSTRAINT IMAC_AimerCommentaire_IMAC_Commentaire_FK FOREIGN KEY (id) REFERENCES IMAC_Commentaire(id)
+	,CONSTRAINT IMAC_AimerCommentaire_IMAC_Utilisateur0_FK FOREIGN KEY (id_IMAC_Utilisateur) REFERENCES IMAC_Utilisateur(id)
 )ENGINE=InnoDB;
 
 
