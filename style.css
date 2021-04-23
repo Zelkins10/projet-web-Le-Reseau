@@ -51,7 +51,7 @@ p{
 	margin:0px;
 }
 
-/*style du bandeau qui permet d'en savoirs plus sur le profil*/
+/*style du bandeau qui permet d'en savoir plus sur le profil*/
 
 .savoirplus{
 	background-color: blue;
@@ -63,7 +63,7 @@ p{
 	background: blue;
 }
 
-/*style fil actualité avec publication: en haut auteur (photo+pseudo) le contenu puis en bas les like et commentaires*/
+/*style fil actualité avec publication : en haut auteur (photo + pseudo), le contenu puis en bas les likes et commentaires*/
 
 .fil{
 	background-color: burlywood;
