@@ -22,21 +22,6 @@ CREATE TABLE IMAC_Utilisateur(
 
 
 #------------------------------------------------------------
-# Table: IMAC_Commentaire
-#------------------------------------------------------------
-
-CREATE TABLE IMAC_Commentaire(
-        id                  Int NOT NULL ,
-        contenu             Longtext NOT NULL ,
-        date                Date NOT NULL ,
-        id_IMAC_Utilisateur Int NOT NULL
-	,CONSTRAINT IMAC_Commentaire_PK PRIMARY KEY (id)
-
-	,CONSTRAINT IMAC_Commentaire_IMAC_Utilisateur_FK FOREIGN KEY (id_IMAC_Utilisateur) REFERENCES IMAC_Utilisateur(id)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: IMAC_Publication
 #------------------------------------------------------------
 
@@ -45,12 +30,27 @@ CREATE TABLE IMAC_Publication(
         texte               Longtext ,
         image               Varchar (50) ,
         date                Date NOT NULL ,
-        id_IMAC_Commentaire Int NOT NULL ,
         id_IMAC_Utilisateur Int NOT NULL
 	,CONSTRAINT IMAC_Publication_PK PRIMARY KEY (id)
 
-	,CONSTRAINT IMAC_Publication_IMAC_Commentaire_FK FOREIGN KEY (id_IMAC_Commentaire) REFERENCES IMAC_Commentaire(id)
-	,CONSTRAINT IMAC_Publication_IMAC_Utilisateur0_FK FOREIGN KEY (id_IMAC_Utilisateur) REFERENCES IMAC_Utilisateur(id)
+	,CONSTRAINT IMAC_Publication_IMAC_Utilisateur_FK FOREIGN KEY (id_IMAC_Utilisateur) REFERENCES IMAC_Utilisateur(id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: IMAC_Commentaire
+#------------------------------------------------------------
+
+CREATE TABLE IMAC_Commentaire(
+        id                  Int NOT NULL ,
+        contenu             Longtext NOT NULL ,
+        date                Date NOT NULL ,
+        id_IMAC_Utilisateur Int NOT NULL ,
+        id_IMAC_Publication Int NOT NULL
+	,CONSTRAINT IMAC_Commentaire_PK PRIMARY KEY (id)
+
+	,CONSTRAINT IMAC_Commentaire_IMAC_Utilisateur_FK FOREIGN KEY (id_IMAC_Utilisateur) REFERENCES IMAC_Utilisateur(id)
+	,CONSTRAINT IMAC_Commentaire_IMAC_Publication0_FK FOREIGN KEY (id_IMAC_Publication) REFERENCES IMAC_Publication(id)
 )ENGINE=InnoDB;
 
 
