@@ -8,7 +8,7 @@
 		<?php
 			if(isset($_SESSION['pseudo'])){
 				if($_SESSION['pseudo']=="admin"){
-					echo "Vous êtes l'administrateur.";
+					echo "Vous êtes l'administrateur.<br>";
 				}
 				echo "<a href='logout.php'>Se déconnecter</a>";
 			}
