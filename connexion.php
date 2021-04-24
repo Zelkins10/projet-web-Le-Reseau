@@ -8,8 +8,9 @@
         $pseudo = htmlspecialchars($_POST['pseudo']);
         $motDePasse = htmlspecialchars($_POST['motDePasse']);
 
-        if ($pseudo=="admin" and $mdp=="mdp"){
+        if ($pseudo=="admin" && $motDePasse=="mdp"){
             $_SESSION['pseudo'] = $pseudo;
+            header ('location: formConnexion.php?erreur=aucune');
         }
         else{
             $reponse = $bdd->query('SELECT COUNT(*) as nbCompte FROM IMAC_Utilisateur WHERE pseudo="'.$pseudo.'" AND motDePasse="'.$motDePasse.'"');
