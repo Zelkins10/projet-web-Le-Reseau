@@ -1,6 +1,7 @@
 <?php
     session_start();
     $id = $_GET['id'];
+    $_SESSION['id'] = $id;
     include 'bdd.php';
     include 'header.php';
 
@@ -9,9 +10,6 @@
 ?>
 
 <body id="top">
-    <a href="index.php">
-        <div class="Le_Reseau_accueil">Accueil</div>
-    </a>
 
     <!-- en-tête Le Réseau-->
     <div class="bandeau">
@@ -28,7 +26,7 @@
             
             // requête correcte :
             $reponse = $bdd->query('SELECT IMAC_Publication.id, texte, image, date, id_IMAC_Utilisateur, pseudo, photoProfil FROM IMAC_Utilisateur JOIN IMAC_Publication ON IMAC_Utilisateur.id = id_IMAC_Utilisateur WHERE IMAC_Publication.id="'.$id.'"');
-            while($donnees = $reponse->fetch()){ // PB : Le contrôle n'entre jms dans cette boucle while
+            while($donnees = $reponse->fetch()){
                 ?>
 
                 <div class="auteurPublication">
@@ -74,12 +72,8 @@
                 while($donnees = $reponse->fetch()){
                     ?>
                     <div class="caracteristiques">
-                    <?php echo $donnees['nbComms'];
-                    ?> commentaire
-                    <?php
-                        if($donnees['IMAC_Publication.id'] > 1){
-                            echo "s";
-                        } ?>
+                    <?php echo "🗨 " . $donnees['nbComms'];
+                    ?>
                     </div>
                     <?php
                 }
@@ -87,6 +81,14 @@
                 $reponse->closeCursor();
                 ?>
             <br><br>
+
+            <!-- Action : like -->
+
+            <div class="reaction">
+                <form method="post" action="ajoutLike.php" id="like">
+                    <input type="submit" value="J'aime" />
+                </form>
+            </div>
 
             <!-- comms de la publication -->
 
@@ -105,11 +107,11 @@
             <br>
 
             <?php
-            $reponse = $bdd->query('SELECT IMAC_Commentaire.id AS idComm, contenu, date, IMAC_Commentaire.id_IMAC_Utilisateur, id_IMAC_Publication, COUNT(IMAC_AimerCommentaire.id_IMAC_Utilisateur) AS likesDuComm, pseudo
+            $reponse = $bdd->query('SELECT IMAC_Commentaire.id, contenu, date, IMAC_Commentaire.id_IMAC_Utilisateur, id_IMAC_Publication, COUNT(IMAC_AimerCommentaire.id_IMAC_Utilisateur) AS likesDuComm, pseudo
             FROM IMAC_Commentaire
-            JOIN IMAC_AimerCommentaire ON IMAC_Commentaire.id = IMAC_AimerCommentaire.id
+            JOIN IMAC_AimerCommentaire ON IMAC_Commentaire.id = IMAC_AimerCommentaire.id AND IMAC_Commentaire.id_IMAC_Utilisateur = IMAC_AimerCommentaire.id_IMAC_Utilisateur
             JOIN  IMAC_Utilisateur ON IMAC_Commentaire.id_IMAC_Utilisateur = IMAC_Utilisateur.id
-            WHERE IMAC_Commentaire.id = " ' . $id . ' "');
+            WHERE IMAC_Commentaire.id_IMAC_Publication = " ' . $id . ' "');
 
             while($donnees = $reponse->fetch()){
                 $idComm = $donnees['IMAC_Commentaire.id'];
@@ -124,6 +126,7 @@
                         <?php
                             }
                         } ?>
+                        
                         <a href="profil.php?pseudo=<?php echo $pseudo; ?>"><?php echo $pseudo; ?></a> <!-- Lien vers le profil de l'auteur du commentaire -->
                         <br>
                         <?php
