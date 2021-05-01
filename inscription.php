@@ -41,6 +41,7 @@
                 if (is_uploaded_file($_FILES["photoProfil"]["tmp_name"])) {
                     rename($_FILES["photoProfil"]["tmp_name"],
                     $repertoireDestination.$nomDestination);
+                    chmod($repertoireDestination.$nomDestination, 0755);
                 }
             }
             $reponse = $bdd->query('INSERT INTO IMAC_Utilisateur(pseudo, MotDePasse, prenom, nom, dateNaissance, email, bio, photoProfil) values("'.$pseudo.'", "'.$motDePasse.'", "'.$prenom.'", "'.$nom.'", "'.$dateNaissance.'", "'.$email.'", "'.$bio.'", "photoProfil/'.$nomDestination.'")');

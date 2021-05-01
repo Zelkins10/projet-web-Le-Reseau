@@ -5,15 +5,17 @@ $id = $_SESSION['id'];
 $pseudo = $_SESSION['pseudo'];
 
 if(!isset($pseudo)){
-    header('location: formConnexion.php');
+    header('location: formConnexion.php?id='.$id.'');
 }
 
 else{
-	
+
+    if(!isset($_POST['contenu'])){	
     header('location: publication.php?id='.$id.'');
+}
 
+    else{
         $comm = htmlspecialchars($_POST['contenu']);
-
         include 'bdd.php';
 
         $reponse = $bdd->query('SELECT COUNT(*) AS nbComms FROM IMAC_Commentaire WHERE id_IMAC_Utilisateur="'.$pseudo.'" AND id_IMAC_Publication='.$id.'');
@@ -23,8 +25,6 @@ else{
 
         if($nbComms < 999){ // Un utilisateur ne peut pas poster plus de 999 commentaires sur une même publication
             $reponse = $bdd->query('INSERT INTO IMAC_Commentaire(contenu, date, id_IMAC_Utilisateur, id_IMAC_Publication) VALUES("'.$comm.'", CURDATE(), "'.$pseudo.'", '.$id.')');
-            //DEBUG
-            //$reponse = $bdd->query('INSERT INTO IMAC_Commentaire(contenu, date, id_IMAC_Utilisateur, id_IMAC_Publication) VALUES("test de comm manuel", CURDATE(), "'.$pseudo.'", '.$id.')');
             header ('location: publication.php?id='.$id.'');
         }
 
@@ -36,6 +36,7 @@ else{
             echo"</script>";
             echo"</body></html>";
         }
+    }
 };
 
 ?> 

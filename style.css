@@ -65,6 +65,11 @@ p{
 
 /*style fil actualité avec publication : en haut auteur (photo + pseudo), le contenu puis en bas les likes et commentaires*/
 
+.photo{
+	height: 20px;
+	width: 20px;
+}
+
 .fil{
 	background-color: burlywood;
 	
