@@ -76,6 +76,23 @@ a:hover{
 	margin-right: auto;
 }
 
+/* ============================ PUBLICATION ============================*/
+
+input[type=textarea]{
+	height: 75px;
+	width: 500px;
+}
+
+.publication{
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+	
+	border: 3px solid #F2F2F2;
+}
+
 /* ============================ style du profil: photo et infos à côté ============================*/
 
 .profil{
