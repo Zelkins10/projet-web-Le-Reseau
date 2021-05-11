@@ -15,15 +15,15 @@
 ?>
 	<body>
 		<h1><a href="index.php">Le Réseau</a></h1>
-		<form method="post" action="inscription.php" enctype="multipart/form-data">
-			E-mail : <input type="email" name="email" required><br>
-			Nom d'utilisateur : <input type="text" name="pseudo" required><br>
-			Mot de passe : <input type="password" name="motDePasse" required><br>
-			Prénom : <input type="text" name="prenom" required><br>
-			Nom : <input type="text" name="nom" required><br>
-			Date de Naissance : <input type="date" name="dateNaissance"><br>
-			Bio : <input type="textarea" name="bio"><br>
-			Photo de profil : <input type="file" name="photoProfil"><br>
+		<form class="inscriptionForm" method="post" action="inscription.php" enctype="multipart/form-data">
+			<input type="email" name="email" placeholder="Adresse Mail" required><br>
+			<input type="text" name="pseudo" placeholder="Pseudo" required><br>
+			<input type="password" name="motDePasse" placeholder="Mot de Passe" required><br>
+			<input type="text" name="prenom" placeholder="Prénom" required><br>
+			<input type="text" name="nom" placeholder="Nom" required><br>
+			<input type="date" name="dateNaissance" placeholder="Date de Naissance"><br>
+			<input type="textarea" name="bio" placeholder="Bio"><br>
+			<input type="file" name="photoProfil"><br>
 			<input type="submit" value="Valider"/>
 			<input type="reset" value="Annuler"/>
 		</form>

@@ -11,16 +11,19 @@
 				if($_SESSION['pseudo']=="admin"){
 					echo "Vous êtes l'administrateur.<br>";
 				}
-				echo "<a href='formPublication.php'>Nouvelle Publication</a><br>";
-				echo "<a href='messagesPrives.php'>Nouveau Message privé</a><br>";
-				echo "<a href='profil.php?pseudo=".$pseudo."'>Mon Compte</a><br>";
-				echo "<a href='logout.php'>Se déconnecter</a><br>";
+				echo "<div class='websiteInteractions'>";
+				echo "<a class='linkHomepage' href='formPublication.php'>Nouvelle Publication</a>";
+				echo "<a class='linkHomepage' href='messagesPrives.php'>Nouveau Message privé</a>";
+				echo "<a class='linkHomepage' href='profil.php?pseudo=".$pseudo."'>Mon Compte</a>";
+				echo "<a class='linkHomepage' href='logout.php'>Se déconnecter</a>";
+				echo "</div>";
 				$reponse = $bdd->query('SELECT pseudo,photoProfil,texte,image,date,COUNT(IMAC_AimerPublication.id_IMAC_Utilisateur) AS nombrelike
 										FROM IMAC_Publication JOIN 
 										IMAC_AimerPublication ON IMAC_AimerPublication.id=IMAC_Publication.id JOIN
 										IMAC_Utilisateur ON IMAC_AimerPublication.id_IMAC_Utilisateur=IMAC_Utilisateur.id 
 										WHERE pseudo="'.$pseudo.'" 
-										ORDER BY nombrelike');
+										ORDER BY nombrelike 
+										LIMIT 4');
 				
 			}
 			else{
@@ -30,19 +33,20 @@
 										FROM IMAC_Publication JOIN 
 										IMAC_AimerPublication ON IMAC_AimerPublication.id=IMAC_Publication.id JOIN
 										IMAC_Utilisateur ON IMAC_AimerPublication.id_IMAC_Utilisateur=IMAC_Utilisateur.id 
-										ORDER BY nombrelike');
+										ORDER BY nombrelike
+										LIMIT 4');
 			
 
 			}
-			$compteur=0;
-			while ($donnees=$response->fetch() OR $compteur>4){
+
+			while ($donnees=$reponse->fetch()){
 				?>
                 <div class="auteurPublication">
                     <?php echo $donnees['pseudo']; ?> </div>
                 <br>
                 <div class="photoProfilAuteur">
                     <img src="<?php echo $donnees['photoProfil']; ?>" id="photo_profil"> </div> 
-                <div class="caracteristiques">Publié le 
+                <div class="caracteristiques">
                     <?php echo $donnees['date']; ?> </div>
                 <br>
                 <div class="caracteristiques">
@@ -50,7 +54,6 @@
                 <div class="caracteristiques"><?php echo $donnees['texte']; ?></div>
                 <br>
 				<?php
-				$compteur++;
 			}
 			$reponse->closeCursor();
 
