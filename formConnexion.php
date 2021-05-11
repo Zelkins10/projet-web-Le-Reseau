@@ -15,9 +15,9 @@
 ?>
 	<body>
 		<h1><a href="index.php">Le Réseau</a></h1>
-		<form method="post" action="connexion.php">
-			Pseudo : <input type="text" name="pseudo" required>
-			Mot de passe : <input type="password" name="motDePasse" required><br>
+		<form class="connexionForm" method="post" action="connexion.php">
+			<input type="text" name="pseudo" placeholder="Pseudo" required>
+			<input type="password" name="motDePasse" placeholder="Mot de Passe" required><br>
 			<input type="submit" value="Valider"/>
 			<input type="reset" value="Annuler"/>
 		</form>
