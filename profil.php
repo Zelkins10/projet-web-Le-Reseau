@@ -19,11 +19,6 @@
     $photoProfil=$donnees['photoProfil'];
 ?>
     <body>
-		<!--bandeau réseau-->
-		<div class="bandeau">
-			<img class="logo">
-			<p><a href="index.php">Le Réseau</a></p>
-		</div>
         <!--partie présentation profil-->
         <div class="profil">
             <img src="<?php echo $donnees['photoProfil']; ?>" alt="bug" class="photoprofil">

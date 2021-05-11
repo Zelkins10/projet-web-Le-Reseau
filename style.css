@@ -94,14 +94,33 @@ input[type=textarea]{
 
 /* ============================ MESSAGES PRIVES============================*/
 
-.destinataire{
+.vosMessages{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-top: 5px;
+	font-size: 20px;
+}
+
+.listeMessages{
 	display: flex;
 	flex-direction: column;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-/* ============================ style du profil: photo et infos à côté ============================*/
+.destinataires{
+	display: flex;
+	flex-direction: column;
+	margin: 10px;
+}
+
+.photo{
+	border: 2px solid #F2F2F2;
+	border-radius: 50%;
+}
+
+/* ============================ PROFIL ============================*/
 
 .profil{
 	display:flex;
@@ -111,6 +130,8 @@ input[type=textarea]{
 .photoprofil{
 	height: 100px;
 	width:100px;
+	border: 2px solid #F2F2F2;
+	border-radius: 50%;
 }
 
 .infoprofil{
@@ -133,13 +154,23 @@ input[type=textarea]{
 /*style du bandeau qui permet d'en savoir plus sur le profil*/
 
 .savoirplus{
-	background-color: blue;
+	height: 30px;
+	background-color: #404040;
+	border: 3px solid #A6A6A6;
+	display: flex;
+	flex-direction: row;
 }
 
 .boutonprofil{
 	height: 20px;
 	width:100px;
-	background: blue;
+	margin: auto;
+	background-color: #404040;
+	color: #F2F2F2;
+	padding: 1px;
+	text-align: center;
+	display: inline-block;
+	border-radius: 5%;
 }
 
 /*style fil actualité avec publication : en haut auteur (photo + pseudo), le contenu puis en bas les likes et commentaires*/
@@ -150,7 +181,7 @@ input[type=textarea]{
 }
 
 .fil{
-	background-color: burlywood;
+	background-color: #A6A6A6;
 	
 }
 
@@ -159,11 +190,11 @@ input[type=textarea]{
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	
+	border-radius: 1%;
 }
 
 .auteur{
-	font-size:15px;
+	font-size:25px;
 }
 
 .date{
@@ -171,7 +202,7 @@ input[type=textarea]{
 }
 
 .contenu{
-	font-size: 15px;
+	font-size: 20px;
 }
 
 .reaction{

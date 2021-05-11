@@ -11,13 +11,17 @@
     $id_utilisateur=$donnees['id'];
 ?>
     <body>
+        <div class="vosMessages">
         <p>Vos Messages</p>
+        </div>
         <?php
             $reponse = $bdd->query('SELECT id_IMAC_Utilisateur_Recevoir, pseudo, photoProfil, id_IMAC_Utilisateur FROM IMAC_MessagePrive mp JOIN IMAC_Utilisateur u ON mp.id_IMAC_Utilisateur_Recevoir=u.id WHERE id_IMAC_Utilisateur="'.$id_utilisateur.'"');
-            echo "<div class='destinataire'>";
+            echo "<div class='listeMessages'>";
             while ($donnees = $reponse->fetch()) {
+                echo "<div class='destinataires'>";
                 echo "<img class='photo' src='".$donnees['photoProfil']."'>";
                 echo "<a href='messagePrive.php?id=".$donnees['id_IMAC_Utilisateur_Recevoir']."'>".$donnees['pseudo']."</a>";
+                echo "</div>";
             }
             echo "</div>";
             $reponse->closeCursor();
@@ -34,6 +38,7 @@
             }
             $reponse->closeCursor();
         ?>
+
         <button onclick="window.location.href='nouveauMessage.php'">Nouveau Message</button><br>
     </body>
 </html>
