@@ -27,8 +27,14 @@
 				
 			}
 			else{
-				echo "<a href='formInscription.php'>S'inscrire</a><br>";
-				echo "<a href='formConnexion.php'>Se connecter</a><br>";
+				echo "<div class='débuterSurLeSite'>";
+				echo "<div class='boutonsDébuterSurLeSite'>";
+				echo "<a href='formInscription.php'>Inscription</a><br>";
+				echo "</div>";
+				echo "<div class='boutonsDébuterSurLeSite'>";
+				echo "<a href='formConnexion.php'>Connexion</a>";
+				echo "</div>";
+				echo "</div>";
 				$reponse = $bdd->query('SELECT pseudo,photoProfil,texte,image,date,COUNT(IMAC_AimerPublication.id_IMAC_Utilisateur) AS nombrelike
 										FROM IMAC_Publication JOIN 
 										IMAC_AimerPublication ON IMAC_AimerPublication.id=IMAC_Publication.id JOIN
@@ -41,18 +47,17 @@
 
 			while ($donnees=$reponse->fetch()){
 				?>
-                <div class="auteurPublication">
+                <div class="publications">
+				<div class="auteurPublication">
                     <?php echo $donnees['pseudo']; ?> </div>
-                <br>
                 <div class="photoProfilAuteur">
                     <img src="<?php echo $donnees['photoProfil']; ?>" id="photo_profil"> </div> 
                 <div class="caracteristiques">
                     <?php echo $donnees['date']; ?> </div>
-                <br>
                 <div class="caracteristiques">
                 <img src="<?php echo $donnees['image']; ?>" id="img_publication"></div> 
                 <div class="caracteristiques"><?php echo $donnees['texte']; ?></div>
-                <br>
+				</div>
 				<?php
 			}
 			$reponse->closeCursor();
