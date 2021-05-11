@@ -42,6 +42,20 @@ a:hover{
 
 }
 
+/* ============================ INDEX (CONNECTED) ============================*/
+/*Bordure & Menu*/
+.websiteInteractions{
+	display: flex;
+	flex-direction: row;
+	border: 3px solid #F2F2F2;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.linkHomepage{
+	margin: auto;
+}
+
 /* ============================ CONNEXION FORM ============================*/
 
 .connexionForm{
