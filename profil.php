@@ -56,8 +56,14 @@
                     ?>
                     <div class="contenu"><?php echo $donnees['texte']; ?></div>
                     <div class="reaction">
-                        <button class="boutonpublication">Commenter</button>
-                        <button class="boutonpublication">Aimer</button>
+                        <?php
+                        //echo "<button class='boutonpublication'>Commenter</button>"
+                        //<!-- <button onclick="window.location.href = 'https://fr.w3docs.com/';">Ajouter un commentaire</button> -->
+                        echo "<a href='publication.php?id=" . $donnees['id'] . "'>
+                        <button class='boutonpublication'>Commenter</button>
+                        </a>"
+                        ?>
+                        <button class="boutonpublication">J'aime</button>
                     </div>
                 </div>
             <?php 

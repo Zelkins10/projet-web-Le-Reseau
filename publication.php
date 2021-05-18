@@ -33,20 +33,20 @@
                     <?php echo $donnees['pseudo']; ?> </div>
                 <br>
                 
-                <div class="photoProfilAuteur">
-                    <img src="<?php echo $donnees['photoProfil']; ?>" id="photo_profil"> </div> <!-- mettre une pp vierge de type "par défaut" à l'auteur s'il n'a pas de pp personnalisée -->
+                <div>
+                    <img class="photo" src="<?php echo $donnees['photoProfil']; ?>" id="photo_profil"> </div> <!-- mettre une pp vierge de type "par défaut" à l'auteur s'il n'a pas de pp personnalisée -->
 
                 <!-- <p> -->
 
-                <div class="caracteristiques">Publié le 
+                <div>Publié le 
                     <?php echo $donnees['date']; ?> </div>
                 <br>
 
-                <div class="caracteristiques">
-                <img src="<?php echo $donnees['image']; ?>" id="img_publication"></div> 
+                <div>
+                <img class="photoPublication" src="<?php echo $donnees['image']; ?>" id="img_publication"></div> 
 
                  <!-- texte de la publication -->
-                <div class="caracteristiques"><?php echo $donnees['texte']; ?></div>
+                <div><?php echo $donnees['texte']; ?></div>
                 <br>
 
                 <!-- somme des likes de la publication -->
@@ -59,7 +59,7 @@
                 // ancienne 2e condition de jointure : AND IMAC_AimerPublication.id_IMAC_Utilisateur = IMAC_Publication.id_IMAC_Utilisateur
                 while($donnees = $reponse->fetch()){
                     ?>
-                    <div class="caracteristiques"><?php echo  "👍 " . $donnees['likes']; ?> </div>
+                    <div><?php echo  "👍 " . $donnees['likes']; ?> </div>
                     <br>
                     <?php
                 }
@@ -71,7 +71,7 @@
                 
                 while($donnees = $reponse->fetch()){
                     ?>
-                    <div class="caracteristiques">
+                    <div>
                     <?php echo "🗨 " . $donnees['nbComms'];
                     ?>
                     </div>
@@ -107,14 +107,14 @@
             <br>
 
             <?php
-            $reponse = $bdd->query('SELECT IMAC_Commentaire.id, contenu, date, IMAC_Commentaire.id_IMAC_Utilisateur, id_IMAC_Publication, (SELECT COUNT(*) FROM IMAC_AimerCommentaire WHERE IMAC_AimerCommentaire.id = IMAC_Commentaire.id) AS likesDuComm, pseudo
+            $reponse = $bdd->query('SELECT IMAC_Commentaire.id AS idCommSQL, contenu, date, IMAC_Commentaire.id_IMAC_Utilisateur, id_IMAC_Publication, (SELECT COUNT(*) FROM IMAC_AimerCommentaire WHERE IMAC_AimerCommentaire.id = IMAC_Commentaire.id) AS likesDuComm, pseudo
             FROM IMAC_Commentaire
             LEFT JOIN IMAC_AimerCommentaire ON IMAC_Commentaire.id = IMAC_AimerCommentaire.id
             JOIN  IMAC_Utilisateur ON IMAC_Commentaire.id_IMAC_Utilisateur = IMAC_Utilisateur.id
             WHERE IMAC_Commentaire.id_IMAC_Publication = '.$id.'');
 
             while($donnees = $reponse->fetch()){
-                $idComm = $donnees['IMAC_Commentaire.id'];
+                $idComm = $donnees['idCommSQL'];
                 $pseudo = $donnees['pseudo'];
                 $comm = $donnees['contenu'];
             ?>
@@ -122,7 +122,7 @@
                     <p>
                         <?php if(isset($_SESSION['pseudo'])){ // Si on est co
                             if(($_SESSION['pseudo'] == "admin") || ($_SESSION['pseudo'] == $pseudo)){ ?> <!-- Si on est l'auteur du comm OU qu'on est l'admin -->
-                                <a href="supprComm.php?id=<?php echo $idcom; ?>" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?'));"> <img src="img/croix.png" id="img_suppression" /> </a>
+                                <a href="supprComm.php?id=<?php echo $idComm; ?>" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?'));"> <img src="img/croix.png" class="photo" /> </a>
                         <?php
                             }
                         } ?>
