@@ -57,13 +57,32 @@
                     <div class="contenu"><?php echo $donnees['texte']; ?></div>
                     <div class="reaction">
                         <?php
+                        // Affichage nb de likes et de comms sur la publication
+                //}
+                        //$reponse->closeCursor();
+                        $reponse2 = $bdd->query('SELECT COUNT(IMAC_AimerPublication.id) AS likes FROM IMAC_AimerPublication JOIN IMAC_Publication ON IMAC_AimerPublication.id = IMAC_Publication.id WHERE IMAC_Publication.id = " '. $donnees['id'] .' " ');
+                        $donnees2 = $reponse2->fetch();
+                            echo  "👍 " . $donnees2['likes'];
+                        
+                        $reponse2->closeCursor();
+                        $reponse2 = $bdd->query('SELECT COUNT(IMAC_Commentaire.id) AS nbComms FROM IMAC_Commentaire JOIN IMAC_Publication ON IMAC_Commentaire.id_IMAC_Publication = IMAC_Publication.id WHERE IMAC_Publication.id= "' . $donnees['id'] . '"');
+                        $donnees2 = $reponse2->fetch();
+                            echo "🗨 " . $donnees2['nbComms'];
+                        
+                        $reponse2->closeCursor();
+
                         //echo "<button class='boutonpublication'>Commenter</button>"
                         //<!-- <button onclick="window.location.href = 'https://fr.w3docs.com/';">Ajouter un commentaire</button> -->
                         echo "<a href='publication.php?id=" . $donnees['id'] . "'>
                         <button class='boutonpublication'>Commenter</button>
                         </a>"
                         ?>
-                        <button class="boutonpublication">J'aime</button>
+                        <!-- Action : like -->
+                        <div class="reaction">
+                            <form method="post" action="ajoutLike.php" id="like">
+                                <input type="submit" value="J'aime" />
+                            </form>
+                        </div>
                     </div>
                 </div>
             <?php 
