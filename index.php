@@ -15,6 +15,7 @@
 				echo "<a class='linkHomepage' href='formPublication.php'>Nouvelle Publication</a>";
 				echo "<a class='linkHomepage' href='messagesPrives.php'>Nouveau Message privé</a>";
 				echo "<a class='linkHomepage' href='profil.php?pseudo=".$pseudo."'>Mon Compte</a>";
+				echo "<a class='linkHomepage' href='formParametres.php'>Paramètres</a>";
 				echo "<a class='linkHomepage' href='logout.php'>Se déconnecter</a>";
 				echo "</div>";
 				$reponse = $bdd->query('SELECT pseudo,photoProfil,texte,image,date,COUNT(IMAC_AimerPublication.id_IMAC_Utilisateur) AS nombrelike
@@ -51,7 +52,7 @@
 				<div class="auteurPublication">
                     <?php echo $donnees['pseudo']; ?> </div>
                 <div class="photoProfilAuteur">
-                    <img src="<?php echo $donnees['photoProfil']; ?>" id="photo_profil"> </div> 
+                    <img src="<?php echo $donnees['photoProfil']; ?>" id="photo_profil" class="photo"> </div> 
                 <div class="caracteristiques">
                     <?php echo $donnees['date']; ?> </div>
                 <div class="caracteristiques">
