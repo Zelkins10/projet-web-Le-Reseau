@@ -36,7 +36,7 @@
 				echo "<a href='formConnexion.php'>Connexion</a>";
 				echo "</div>";
 				echo "</div>";
-				$reponse = $bdd->query('SELECT pseudo,photoProfil,texte,image,date,COUNT(IMAC_AimerPublication.id_IMAC_Utilisateur) AS nombrelike
+				$reponse = $bdd->query('SELECT IMAC_Publication.id, pseudo,photoProfil,texte,image,date,COUNT(IMAC_AimerPublication.id_IMAC_Utilisateur) AS nombrelike
 										FROM IMAC_Publication JOIN 
 										IMAC_AimerPublication ON IMAC_AimerPublication.id=IMAC_Publication.id JOIN
 										IMAC_Utilisateur ON IMAC_AimerPublication.id_IMAC_Utilisateur=IMAC_Utilisateur.id 
@@ -50,6 +50,9 @@
 				?>
                 <div class="publications">
 				<div class="auteurPublication">
+				<?php if($_SESSION['pseudo']=="admin"){
+					echo "<a href='supprPublication.php?id="$donnees['IMAC_Publication.id']"'>";
+				}?>
                     <?php echo $donnees['pseudo']; ?> </div>
                 <div class="photoProfilAuteur">
                     <img src="<?php echo $donnees['photoProfil']; ?>" id="photo_profil" class="photo"> </div> 

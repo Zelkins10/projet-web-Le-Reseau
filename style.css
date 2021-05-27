@@ -122,6 +122,10 @@ a:hover{
 
 /* ============================ PUBLICATION ============================*/
 
+.photoPublication{
+	width: 300px;
+}
+
 input[type=textarea]{
 	height: 75px;
 	width: 500px;
@@ -158,11 +162,6 @@ input[type=textarea]{
 	display: flex;
 	flex-direction: column;
 	margin: 10px;
-}
-
-.photo{
-	border: 2px solid #F2F2F2;
-	border-radius: 50%;
 }
 
 /* ============================ PROFIL ============================*/
@@ -223,6 +222,8 @@ input[type=textarea]{
 .photo{
 	height: 20px;
 	width: 20px;
+	border: 2px solid #F2F2F2;
+	border-radius: 50%;
 }
 
 .fil{
