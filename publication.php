@@ -29,12 +29,10 @@
             while($donnees = $reponse->fetch()){
                 ?>
 
-                <div class="auteurPublication">
-                    <?php echo $donnees['pseudo']; ?> </div>
-                <br>
-                
+                <!-- Auteur de la publication -->
                 <div>
-                    <img class="photo" src="<?php echo $donnees['photoProfil']; ?>" id="photo_profil"> </div> <!-- mettre une pp vierge de type "par défaut" à l'auteur s'il n'a pas de pp personnalisée -->
+                    <a href="profil.php?pseudo=<?php echo $donnees['pseudo']; ?>"> <img class="photo" src="<?php echo "photoProfil/" . $donnees['pseudo'] . ".jpg"; ?>" id="photo_profil">  <?php echo $donnees['pseudo']; ?> </a>
+                </div> <!-- mettre une pp vierge de type "par défaut" à l'auteur s'il n'a pas de pp personnalisée -->
 
                 <!-- <p> -->
 
@@ -121,23 +119,24 @@
             ?>
                 <div class="comm">
                     <p>
+                        
+                        <!-- pp de l'auteur du comm et son pseudo -->
+                        <a href="profil.php?pseudo=<?php echo $pseudo; ?>"> <img class="photo" src="<?php echo "photoProfil/" . $pseudo . ".jpg"; ?>" id="photo_profil">  <?php echo $pseudo; ?> </a> <!-- Lien vers le profil de l'auteur du commentaire -->
+                        <!-- Affichage de la date de mise en ligne du commentaire -->
+                        <?php echo "(le " . $dateEnvoi . ")" ?>
+                        <!-- Bouton pour supprimer le commentaire -->
                         <?php if(isset($_SESSION['pseudo'])){ // Si on est co
                             if(($_SESSION['pseudo'] == "admin") || ($_SESSION['pseudo'] == $pseudo)){ ?> <!-- Si on est l'auteur du comm OU qu'on est l'admin -->
                                 <a href="supprComm.php?id=<?php echo $idComm; ?>" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?'));"> <img src="img/croix.png" class="photo" /> </a>
                         <?php
                             }
                         } ?>
-                        
-                        <!-- pp de l'auteur du comm et son pseudo : lien vers son profil -->
-                        <a href="profil.php?pseudo=<?php echo $pseudo; ?>"> <img class="photo" src="<?php echo "photoProfil/" . $pseudo . ".jpg"; ?>" id="photo_profil">  <?php echo $pseudo; ?> </a> <!-- Lien vers le profil de l'auteur du commentaire -->
-                        <?php echo "(le " . $dateEnvoi . ")" ?> <!-- Affichage de la date de mise en ligne du commentaire -->
+
                         <br>
                         <?php
                         echo $comm; // Affichage du texte du commentaire
                         ?>
                         <br>
-                        <!--echo  "👍 " . $donnees['likesDuComm']; // Affichage du nb de likes du commentaire -->
-                        <!-- <button class="like"><a href="ajoutLikeComm.php"><?php //echo "👍 "  .  $donnees['likesDuComm']?></a></button> -->
                         
                         <!-- Affichage du nb de likes du commentaire sous forme de bouton cliquable -->
                         <?php
