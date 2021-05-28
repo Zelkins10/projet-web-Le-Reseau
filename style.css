@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'ChunkFive-Regular';
-    src: url('ChunkFive-Regular.otf');
+    src: url('font/ChunkFive-Regular.otf');
 }
 
 @font-face {
 	font-family: 'Quicksand-Light';
-	src: url('Quicksand-Light.otf');
+	src: url('font/Quicksand-Light.otf');
 }
 
 body {
@@ -18,14 +18,14 @@ body {
 h1{
 	color: #F2F2F2;
 	text-align: center;
-	font-family: 'ChunkFive-Regular';
+	font-family: 'font/ChunkFive-Regular';
 	font-size: 75px;
 	margin-bottom: 10px;
 }
 
 p{
 	color: #F2F2F2;
-	font-family: 'Quicksand-Light';
+	font-family: 'font/Quicksand-Light';
 	margin:0px;
 	margin-left:10px;
 }
