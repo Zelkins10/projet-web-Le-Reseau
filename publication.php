@@ -137,14 +137,13 @@
                         echo $comm; // Affichage du texte du commentaire
                         ?>
                         <br>
-                        
                         <!-- Affichage du nb de likes du commentaire sous forme de bouton cliquable -->
                         <?php
                         $reponse2 = $bdd->query('SELECT COUNT(IMAC_AimerCommentaire.id) AS likesDuComm FROM IMAC_AimerCommentaire JOIN IMAC_Commentaire ON IMAC_AimerCommentaire.id = IMAC_Commentaire.id WHERE IMAC_Commentaire.id = " '. $idComm .' " ');
                         while($donnees2 = $reponse2->fetch()){
                             ?>
                             <div class="reaction">
-                                <form method="post" action="ajoutLikeComm.php?id="<?php echo $idComm ?> id="like">
+                                <form method="post" action="ajoutLikeComm.php?id=<?php echo $idComm ?>" id="like">
                                     <input type="submit" value=<?php echo "👍"  .  $donnees2['likesDuComm']?> />
                                 </form>
                             </div>                        
