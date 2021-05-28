@@ -22,23 +22,19 @@ else{
         $reponse->closeCursor();
         $nbLikes = $donnees['nbLikes']; // nb de likes émis par l'utilisateur courant
 
-        if($nbLikes == 0){ // Un utilisateur ne peut pas ajouter plus de 1 like sur une même publication
-            $reponse = $bdd->query('SELECT id AS idUser FROM IMAC_Utilisateur WHERE pseudo= "'.$_SESSION['pseudo'].'"');
-            $donnees = $reponse->fetch();
-            $reponse->closeCursor();
-            $idUser = $donnees['idUser'];
+        $reponse = $bdd->query('SELECT id AS idUser FROM IMAC_Utilisateur WHERE pseudo= "'.$_SESSION['pseudo'].'"');
+        $donnees = $reponse->fetch();
+        $reponse->closeCursor();
+        $idUser = $donnees['idUser'];
 
+        if($nbLikes == 0){ // Un utilisateur ne peut pas ajouter plus de 1 like sur une même publication
             $reponse = $bdd->query('INSERT INTO IMAC_AimerPublication(id, id_IMAC_Utilisateur) VALUES('.$id.', "'.$idUser.'" )'); //requête marche
             header ('location: publication.php?id='.$id.'');
         }
 
-        else{ 
-            echo"<html><body>";
-            echo"<script language=\"javascript\">";
-            echo"alert('Vous aimez déjà cette publication.');";
-            echo"document.location.href = 'publication.php?id=".$id."';";
-            echo"</script>";
-            echo"</body></html>";
+        else{ // Retirer le like
+            $reponse = $bdd->query('UPDATE IMAC_AimerPublication SET  WHERE id = ' . $id . ''); // A REPARER
+            header("location:".  $_SERVER['HTTP_REFERER']);
         }
 };
 

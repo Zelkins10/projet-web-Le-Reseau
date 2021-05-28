@@ -12,9 +12,9 @@
 					echo "Vous êtes l'administrateur.<br>";
 				}
 				echo "<div class='websiteInteractions'>";
-				echo "<a class='linkHomepage' href='formPublication.php'>Nouvelle Publication</a>";
-				echo "<a class='linkHomepage' href='messagesPrives.php'>Nouveau Message privé</a>";
-				echo "<a class='linkHomepage' href='profil.php?pseudo=".$pseudo."'>Mon Compte</a>";
+				echo "<a class='linkHomepage' href='formPublication.php'>Nouvelle publication</a>";
+				echo "<a class='linkHomepage' href='messagesPrives.php'>Messages privés</a>";
+				echo "<a class='linkHomepage' href='profil.php?pseudo=".$pseudo."'>Mon compte</a>";
 				echo "<a class='linkHomepage' href='formParametres.php'>Paramètres</a>";
 				echo "<a class='linkHomepage' href='logout.php'>Se déconnecter</a>";
 				echo "</div>";
@@ -51,7 +51,7 @@
                 <div class="publications">
 				<div class="auteurPublication">
 				<?php if($_SESSION['pseudo']=="admin"){
-					echo "<a href='supprPublication.php?id="$donnees['IMAC_Publication.id']"'>";
+					//echo "<a href='supprPublication.php?id="$donnees['IMAC_Publication.id']"'>"; // PROBLEME ICI
 				}?>
                     <?php echo $donnees['pseudo']; ?> </div>
                 <div class="photoProfilAuteur">

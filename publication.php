@@ -82,11 +82,25 @@
 
             <!-- Action : like -->
 
+            <?php
+            // Recherche de l'info "est-ce que l'utilisateur a déjà liké la publication ?"
+            $utilisateurCourant = $_SESSION['pseudo'];
+            $idPublicationLike = $_SESSION['id'];
+            $reponseDeja = $bdd->query('SELECT COUNT(*) AS nbLikesEmis FROM IMAC_AimerPublication
+            JOIN IMAC_Publication ON IMAC_AimerPublication.id = IMAC_Publication.id
+            JOIN IMAC_Utilisateur ON IMAC_AimerPublication.id_IMAC_Utilisateur = IMAC_Utilisateur.id
+            WHERE IMAC_Utilisateur.pseudo="'.$utilisateurCourant.'" AND IMAC_Publication.id='.$idPublicationLike.'');
+            $donneesDeja = $reponseDeja->fetch();
+            $reponseDeja->closeCursor();
+            $nbLikesEmis = $donneesDeja['nbLikesEmis']; // nb de likes émis par l'utilisateur courant
+            
+            ?>
             <div class="reaction">
                 <form method="post" action="ajoutLike.php" id="like">
-                    <input type="submit" value="J'aime" />
+                    <input type="submit" value= <?php if($nbLikesEmis == 0){echo "J'aime";} else{echo "Je_n'aime_plus";} ?> />
                 </form>
             </div>
+
 
             <!-- comms de la publication -->
 
