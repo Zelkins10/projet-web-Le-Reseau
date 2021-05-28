@@ -9,7 +9,7 @@
         $motDePasse = htmlspecialchars($_POST['motDePasse']);
 
         if ($pseudo=="admin" && $motDePasse=="mdp"){
-            $_SESSION['pseudo'] = $pseudo;
+            $_SESSION['pseudo']=$pseudo;
             header ('location: formConnexion.php?erreur=aucune');
         }
         else{

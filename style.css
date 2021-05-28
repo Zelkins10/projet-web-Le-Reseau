@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'ChunkFive-Regular';
-    src: url('ChunkFive-Regular.otf');
+    src: url('font/ChunkFive-Regular.otf');
 }
 
 @font-face {
 	font-family: 'Quicksand-Light';
-	src: url('Quicksand-Light.otf');
+	src: url('font/Quicksand-Light.otf');
 }
 
 body {
@@ -18,14 +18,14 @@ body {
 h1{
 	color: #F2F2F2;
 	text-align: center;
-	font-family: 'ChunkFive-Regular';
+	font-family: 'font/ChunkFive-Regular';
 	font-size: 75px;
 	margin-bottom: 10px;
 }
 
 p{
 	color: #F2F2F2;
-	font-family: 'Quicksand-Light';
+	font-family: 'font/Quicksand-Light';
 	margin:0px;
 	margin-left:10px;
 }
@@ -122,6 +122,10 @@ a:hover{
 
 /* ============================ PUBLICATION ============================*/
 
+.photoPublication{
+	width: 300px;
+}
+
 input[type=textarea]{
 	height: 75px;
 	width: 500px;
@@ -158,11 +162,6 @@ input[type=textarea]{
 	display: flex;
 	flex-direction: column;
 	margin: 10px;
-}
-
-.photo{
-	border: 2px solid #F2F2F2;
-	border-radius: 50%;
 }
 
 /* ============================ PROFIL ============================*/
@@ -223,6 +222,8 @@ input[type=textarea]{
 .photo{
 	height: 20px;
 	width: 20px;
+	border: 2px solid #F2F2F2;
+	border-radius: 50%;
 }
 
 .fil{
