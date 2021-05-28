@@ -16,12 +16,12 @@
 	<body>
 		<h1><a href="index.php">Le Réseau</a></h1>
 		<form class="inscriptionForm" method="post" action="inscription.php" enctype="multipart/form-data">
-			<input type="email" name="email" placeholder="Adresse Mail" required><br>
+			<input type="email" name="email" placeholder="Email" required><br>
 			<input type="text" name="pseudo" placeholder="Pseudo" required><br>
-			<input type="password" name="motDePasse" placeholder="Mot de Passe" required><br>
+			<input type="password" name="motDePasse" placeholder="Mot de passe" required><br>
 			<input type="text" name="prenom" placeholder="Prénom" required><br>
 			<input type="text" name="nom" placeholder="Nom" required><br>
-			<input type="date" name="dateNaissance" placeholder="Date de Naissance"><br>
+			<input type="date" name="dateNaissance" placeholder="Date de naissance"><br>
 			<input type="textarea" name="bio" placeholder="Bio"><br>
 			<input type="file" name="photoProfil"><br>
 			<input type="submit" value="Valider"/>

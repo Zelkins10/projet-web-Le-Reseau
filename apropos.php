@@ -27,10 +27,6 @@
             <img src="<?php echo $donnees['photoProfil']; ?>" alt="bug" class="photoprofil">
             <div class="infoprofil">
                 <ul class="pseudo"><?php echo $donnees['pseudo']; ?></ul>
-                <ul class="info"><?php echo $donnees['prenom']; ?></ul>
-                <ul class="info"><?php echo $donnees['nom']; ?></ul>
-                <ul class="info"><?php echo $donnees['dateNaissance']; ?></ul>
-                <ul class="info"><?php echo $donnees['email']; ?></ul>
                 <ul class="info"><?php echo $donnees['bio']; ?></ul>
             </div>
         </div>
@@ -39,4 +35,7 @@
             <button class="boutonprofil">à propos</button>
             <?php if($compte==0){ ?><button class='boutonprofil' onclick="window.location.href='suivre.php?id=<?php echo $id_utilisateur; ?>'">suivre</button> <?php } ?>
         </div>
+        <ul class="info"><?php echo $donnees['prenom']; ?></ul>
+        <ul class="info"><?php echo $donnees['nom']; ?></ul>
+        <ul class="info"><?php echo "Né(e) le " . $donnees['dateNaissance']; ?></ul>
     </body>

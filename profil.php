@@ -24,8 +24,22 @@
             <img src="<?php echo $donnees['photoProfil']; ?>" alt="bug" class="photoprofil">
             <div class="infoprofil">
                 <ul class="pseudo"><?php echo $donnees['pseudo']; ?></ul>
-                <ul class="info"><?php echo $donnees['dateNaissance']; ?></ul>
                 <ul class="info"><?php echo $donnees['bio']; ?></ul>
+                <ul class="info">
+                <?php
+                $reponse3 = $bdd->query('SELECT COUNT(id) AS nbAbonnements FROM IMAC_Suivre WHERE id="'.$id_utilisateur.'"');
+                $donnees3 = $reponse3->fetch();
+                $reponse3->closeCursor();
+                $abonnements = $donnees3['nbAbonnements'];
+
+                $reponse4 = $bdd->query('SELECT COUNT(id) AS nbFollowers FROM IMAC_Suivre WHERE id_IMAC_Utilisateur="'.$id_utilisateur.'"');
+                $donnees4 = $reponse4->fetch();
+                $reponse4->closeCursor();
+                $followers = $donnees4['nbFollowers'];
+                
+                echo "Suivi(e) par " .$nbFollowers. " personnes";
+                echo " | Suit " . $abonnements . " personnes";
+                ?></ul>
             </div>
         </div>
         <div class="savoirplus">
