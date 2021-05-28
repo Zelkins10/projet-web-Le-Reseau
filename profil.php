@@ -37,7 +37,7 @@
 
         <!--partie fil d'actualité-->
         <div class="fil">
-            fil actu, liste de publications
+            Fil d'actualité, liste de publications
             <?php
                 $reponse = $bdd->query('SELECT * FROM IMAC_Publication WHERE id_IMAC_Utilisateur="'.$id_utilisateur.'"');
                 while ($donnees = $reponse->fetch()) {
