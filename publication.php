@@ -117,6 +117,7 @@
                 $idComm = $donnees['idCommSQL'];
                 $pseudo = $donnees['pseudo'];
                 $comm = $donnees['contenu'];
+                $dateEnvoi = $donnees['date']
             ?>
                 <div class="comm">
                     <p>
@@ -127,20 +128,34 @@
                             }
                         } ?>
                         
-                        <a href="profil.php?pseudo=<?php echo $pseudo; ?>"><?php echo $pseudo; ?></a> <!-- Lien vers le profil de l'auteur du commentaire -->
+                        <!-- pp de l'auteur du comm et son pseudo : lien vers son profil -->
+                        <a href="profil.php?pseudo=<?php echo $pseudo; ?>"> <img class="photo" src="<?php echo "photoProfil/" . $pseudo . ".jpg"; ?>" id="photo_profil">  <?php echo $pseudo; ?> </a> <!-- Lien vers le profil de l'auteur du commentaire -->
+                        <?php echo "(le " . $dateEnvoi . ")" ?> <!-- Affichage de la date de mise en ligne du commentaire -->
                         <br>
                         <?php
                         echo $comm; // Affichage du texte du commentaire
                         ?>
                         <br>
+                        <!--echo  "👍 " . $donnees['likesDuComm']; // Affichage du nb de likes du commentaire -->
+                        <!-- <button class="like"><a href="ajoutLikeComm.php"><?php //echo "👍 "  .  $donnees['likesDuComm']?></a></button> -->
+                        
+                        <!-- Affichage du nb de likes du commentaire sous forme de bouton cliquable -->
                         <?php
-                        echo  "👍 " . $donnees['likesDuComm']; // Affichage du nb de likes du commentaire
-                        ?>
-                    </p>
+                        $reponse2 = $bdd->query('SELECT COUNT(IMAC_AimerCommentaire.id) AS likesDuComm FROM IMAC_AimerCommentaire JOIN IMAC_Commentaire ON IMAC_AimerCommentaire.id = IMAC_Commentaire.id WHERE IMAC_Commentaire.id = " '. $idComm .' " ');
+                        while($donnees2 = $reponse2->fetch()){
+                            ?>
+                            <div class="reaction">
+                                <form method="post" action="ajoutLikeComm.php?id="<?php echo $idComm ?> id="like">
+                                    <input type="submit" value=<?php echo "👍"  .  $donnees2['likesDuComm']?> />
+                                </form>
+                            </div>                        
+                        </p>
 
-                </div>
-                <br><br>
-            <?php
+                    </div>
+                    <br><br>
+                <?php
+                        }
+                        $reponse2->closeCursor();
             }
             
             $reponse->closeCursor();
