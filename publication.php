@@ -29,12 +29,10 @@
             while($donnees = $reponse->fetch()){
                 ?>
 
-                <div class="auteurPublication">
-                    <?php echo $donnees['pseudo']; ?> </div>
-                <br>
-                
+                <!-- Auteur de la publication -->
                 <div>
-                    <img class="photo" src="<?php echo $donnees['photoProfil']; ?>" id="photo_profil"> </div> <!-- mettre une pp vierge de type "par défaut" à l'auteur s'il n'a pas de pp personnalisée -->
+                    <a href="profil.php?pseudo=<?php echo $donnees['pseudo']; ?>"> <img class="photo" src="<?php echo "photoProfil/" . $donnees['pseudo'] . ".jpg"; ?>" id="photo_profil">  <?php echo $donnees['pseudo']; ?> </a>
+                </div> <!-- mettre une pp vierge de type "par défaut" à l'auteur s'il n'a pas de pp personnalisée -->
 
                 <!-- <p> -->
 
@@ -117,30 +115,46 @@
                 $idComm = $donnees['idCommSQL'];
                 $pseudo = $donnees['pseudo'];
                 $comm = $donnees['contenu'];
+                $dateEnvoi = $donnees['date']
             ?>
                 <div class="comm">
                     <p>
+                        
+                        <!-- pp de l'auteur du comm et son pseudo -->
+                        <a href="profil.php?pseudo=<?php echo $pseudo; ?>"> <img class="photo" src="<?php echo "photoProfil/" . $pseudo . ".jpg"; ?>" id="photo_profil">  <?php echo $pseudo; ?> </a> <!-- Lien vers le profil de l'auteur du commentaire -->
+                        <!-- Affichage de la date de mise en ligne du commentaire -->
+                        <?php echo "(le " . $dateEnvoi . ")" ?>
+                        <!-- Bouton pour supprimer le commentaire -->
                         <?php if(isset($_SESSION['pseudo'])){ // Si on est co
                             if(($_SESSION['pseudo'] == "admin") || ($_SESSION['pseudo'] == $pseudo)){ ?> <!-- Si on est l'auteur du comm OU qu'on est l'admin -->
                                 <a href="supprComm.php?id=<?php echo $idComm; ?>" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?'));"> <img src="img/croix.png" class="photo" /> </a>
                         <?php
                             }
                         } ?>
-                        
-                        <a href="profil.php?pseudo=<?php echo $pseudo; ?>"><?php echo $pseudo; ?></a> <!-- Lien vers le profil de l'auteur du commentaire -->
+
                         <br>
                         <?php
                         echo $comm; // Affichage du texte du commentaire
                         ?>
                         <br>
+                        
+                        <!-- Affichage du nb de likes du commentaire sous forme de bouton cliquable -->
                         <?php
-                        echo  "👍 " . $donnees['likesDuComm']; // Affichage du nb de likes du commentaire
-                        ?>
-                    </p>
+                        $reponse2 = $bdd->query('SELECT COUNT(IMAC_AimerCommentaire.id) AS likesDuComm FROM IMAC_AimerCommentaire JOIN IMAC_Commentaire ON IMAC_AimerCommentaire.id = IMAC_Commentaire.id WHERE IMAC_Commentaire.id = " '. $idComm .' " ');
+                        while($donnees2 = $reponse2->fetch()){
+                            ?>
+                            <div class="reaction">
+                                <form method="post" action="ajoutLikeComm.php?id="<?php echo $idComm ?> id="like">
+                                    <input type="submit" value=<?php echo "👍"  .  $donnees2['likesDuComm']?> />
+                                </form>
+                            </div>                        
+                        </p>
 
-                </div>
-                <br><br>
-            <?php
+                    </div>
+                    <br><br>
+                <?php
+                        }
+                        $reponse2->closeCursor();
             }
             
             $reponse->closeCursor();
