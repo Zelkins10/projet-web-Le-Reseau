@@ -8,12 +8,17 @@
 	src: url('font/Quicksand-Light.otf');
 }
 
+html{
+	scroll-behavior: smooth;
+}
+
 body {
 	min-height: 100%;
 	margin: 0px;
 	padding: 0px;
 	background-color: #404040;
 	font-family: 'Quicksand-Light';
+	color: #F2F2F2;
 }
 
 h1{
@@ -47,6 +52,10 @@ a{
 	width:50px;
 }
 
+.blanc{
+	color: #F2F2F2 !important;
+}
+
 /* ============================ PAGE D'ACCUEIL ============================*/
 
 .débuterSurLeSite{
@@ -70,8 +79,7 @@ a{
 }
 
 a{
-	text-decoration: none;
-	color: #A6A6A6;
+	color: #404040;
 }
 
 a:hover{
@@ -90,6 +98,11 @@ a:hover{
 	text-align: center;
 }
 
+#haut{
+	margin: 20 auto;
+	text-align: center;
+}
+
 /* ============================ INDEX (CONNECTED) ============================*/
 /*Bordure & Menu*/
 .websiteInteractions{
@@ -102,6 +115,7 @@ a:hover{
 
 .linkHomepage{
 	margin: auto;
+	color: #F2F2F2 !important;
 }
 
 /* ============================ CONNEXION FORM ============================*/
@@ -143,8 +157,11 @@ input[type=textarea]{
 	margin-left: auto;
 	margin-right: auto;
 	width: 70%;
-	
 	border: 3px solid #F2F2F2;
+}
+
+.centrer{
+	text-align: center;
 }
 
 /* ============================ MESSAGES PRIVES============================*/
@@ -155,6 +172,7 @@ input[type=textarea]{
 	text-align: center;
 	margin-top: 5px;
 	font-size: 20px;
+	margin-bottom: 30px;
 }
 
 .listeMessages{
@@ -188,7 +206,7 @@ input[type=textarea]{
 	text-align: left;
 	display:flex;
 	flex-direction: column;
-	
+	padding-bottom: 5px;
 }
 
 .pseudo{
@@ -213,7 +231,6 @@ input[type=textarea]{
 
 .boutonprofil{
 	height: 20px;
-	width:100px;
 	margin: auto;
 	background-color: #404040;
 	color: #F2F2F2;
@@ -221,6 +238,7 @@ input[type=textarea]{
 	text-align: center;
 	display: inline-block;
 	border-radius: 5%;
+	padding: 0 5px;
 }
 
 /*style fil actualité avec publication : en haut auteur (photo + pseudo), le contenu puis en bas les likes et commentaires*/
@@ -234,6 +252,7 @@ input[type=textarea]{
 
 .fil{
 	background-color: #A6A6A6;
+	padding-bottom: 20px;
 	
 }
 
@@ -259,8 +278,7 @@ input[type=textarea]{
 
 .reaction{
 	margin:10px;
-	display: flex;
-	flex-direction: row;
+	text-align: center;
 }
 
 .boutonpublication{

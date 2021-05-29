@@ -1,7 +1,6 @@
 <?php
     session_start();
     $id = $_GET['id'];
-    $_SESSION['id'] = $id;
     include 'bdd.php';
     include 'header.php';
 
@@ -9,7 +8,7 @@
     //$reponse = $bdd->query('SELECT IMAC_Publication.id, texte, image, date, id_IMAC_Utilisateur, pseudo, photoProfil FROM IMAC_Utilisateur JOIN IMAC_Publication ON IMAC_Utilisateur.id = id_IMAC_Utilisateur WHERE IMAC_Publication.id=" ' . $id . ' " ');
 ?>
 
-<body id="top">
+<body>
 
     <!-- en-tête Le Réseau-->
     <a href="index.php"><h1>Le Réseau</h1></a>
@@ -28,7 +27,7 @@
 
                 <!-- Auteur de la publication -->
                 <div>
-                    <a href="profil.php?pseudo=<?php echo $donnees['pseudo']; ?>">
+                    <a href="profil.php?pseudo=<?php echo $donnees['pseudo']; ?>" class="blanc">
                         <?php
                             if(file_exists($donnees['photoProfil'])){
                                 echo "<img class='photo' src='".$donnees['photoProfil']."' alt='bug'>";
@@ -45,7 +44,12 @@
                 <br>
 
                 <div>
-                <img class="photoPublication" src="<?php echo $donnees['image']; ?>" id="img_publication"></div> 
+                <?php
+                    if(file_exists($donnees['image'])){
+                        echo "<img class='photoPublication' src='".$donnees['image']."' alt='bug'>";
+                    }
+                ?>
+                </div> 
 
                  <!-- texte de la publication -->
                 <div><?php echo $donnees['texte']; ?></div>
@@ -89,7 +93,7 @@
             <?php
             // Recherche de l'info "est-ce que l'utilisateur a déjà liké la publication ?"
             $utilisateurCourant = $_SESSION['pseudo'];
-            $idPublicationLike = $_SESSION['id'];
+            $idPublicationLike = $id;
             $reponseDeja = $bdd->query('SELECT COUNT(*) AS nbLikesEmis FROM IMAC_AimerPublication
             JOIN IMAC_Publication ON IMAC_AimerPublication.id = IMAC_Publication.id
             JOIN IMAC_Utilisateur ON IMAC_AimerPublication.id_IMAC_Utilisateur = IMAC_Utilisateur.id
@@ -100,7 +104,7 @@
             
             ?>
             <div class="reaction">
-                <form method="post" action="ajoutLike.php" id="like">
+                <form method="post" action="ajoutLike.php?id=<?php echo $id; ?>" id="like">
                     <input type="submit" value= <?php if($nbLikesEmis == 0){echo "J'aime";} else{echo "Je_n'aime_plus";} ?> />
                 </form>
             </div>
@@ -113,7 +117,7 @@
             </div>
             <br><br>
             <div> Ajouter un commentaire :</div>
-            <form method="post" action="ajoutComm.php" id="commentaire">
+            <form method="post" action="ajoutComm.php?id=<?php echo $id ?>" id="commentaire">
                 <br><br>
                 <textarea name="comm"
                     placeholder="Votre commentaire..."></textarea>
@@ -136,18 +140,18 @@
                 $dateEnvoi = $donnees['date'];
                 $photoProfil = $donnees['photoProfil'];
             ?>
-                <div class="comm">
+                <div class="centrer">
                     <p>
                         
                         <!-- pp de l'auteur du comm et son pseudo -->
-                        <a href="profil.php?pseudo=<?php echo $pseudo; ?>">
+                        <a href="profil.php?pseudo=<?php echo $pseudo; ?>" class="blanc">
                             <?php
                                 if(file_exists($photoProfil)){
                                     echo "<img class='photo' src='".$photoProfil."' alt='bug'>";
                                 }
                                 echo $pseudo;
                             ?>
-                        </a> <!-- Lien vers le profil de l'auteur du commentaire -->
+                        </a><br> <!-- Lien vers le profil de l'auteur du commentaire -->
                         <!-- Affichage de la date de mise en ligne du commentaire -->
                         <?php echo "(le " . $dateEnvoi . ")" ?>
                         <!-- Bouton pour supprimer le commentaire -->
@@ -199,10 +203,6 @@
             } ?>
         </article>
     </section>
-    <footer>
-        <p><a href="#top">Aller en haut</a></p>
-    </footer>
-    </div>
+	<div id="haut"><a href="#" class="blanc">Aller en haut</a></div>
 </body>
-
 </html>

@@ -1,10 +1,14 @@
 <?php
 
 session_start();
-$id = $_SESSION['id'];
+$id = $_GET['id'];
 $pseudo = $_SESSION['pseudo'];
 
 include 'bdd.php';
+
+if(!isset($pseudo)){
+    header('location: formConnexion.php');
+}
 
 //récup de l'id de l'utilisateur courant :
 $reponse = $bdd->query('SELECT id FROM IMAC_Utilisateur WHERE pseudo="'.$pseudo.'"');

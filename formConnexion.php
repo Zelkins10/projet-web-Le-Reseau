@@ -9,12 +9,12 @@
         $erreur=NULL;
     }
     if($erreur=="aucune"){
-        echo "<body><h1><a href='index.php'>Le Réseau</a></h1><p>Bonjour ".$_SESSION['pseudo']." !</p></body></html>";
+        echo "<body><a href='index.php'><h1>Le Réseau</h1></a><p>Bonjour ".$_SESSION['pseudo']." !</p></body></html>";
     }
     else{
 ?>
 	<body>
-		<h1><a href="index.php">Le Réseau</a></h1>
+		<a href="index.php"><h1>Le Réseau</h1></a>
 		<form class="connexionForm" method="post" action="connexion.php">
 			<input type="text" name="pseudo" placeholder="Pseudo" required>
 			<input type="password" name="motDePasse" placeholder="Mot de Passe" required><br>

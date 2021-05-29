@@ -9,7 +9,7 @@
 
     $texte = htmlspecialchars($_POST['texte']);
 
-    $reponse = $bdd->query('SELECT COUNT(*) as nb_Publication FROM IMAC_Publication');
+    $reponse = $bdd->query('SELECT MAX(id) as nb_Publication FROM IMAC_Publication');
     $donnees = $reponse->fetch();
     $reponse->closeCursor();
 

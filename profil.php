@@ -12,11 +12,16 @@
     else{
         $compte=1;
     }
+    $reponse = $bdd->query('SELECT * FROM IMAC_Utilisateur WHERE pseudo="'.$pseudo_courant.'"');
+    $donnees = $reponse->fetch();
+    $id_utilisateur_courant=$donnees['id'];
+    $reponse->closeCursor();
+
     $reponse = $bdd->query('SELECT * FROM IMAC_Utilisateur WHERE pseudo="'.$pseudo.'"');
     $donnees = $reponse->fetch();
-    $reponse->closeCursor();
     $id_utilisateur=$donnees['id'];
     $photoProfil=$donnees['photoProfil'];
+    $reponse->closeCursor();
 ?>
     <body>
         <a href="index.php"><h1>Le Réseau</h1></a>
@@ -42,16 +47,33 @@
                 $reponse4->closeCursor();
                 $followers = $donnees4['nbFollowers'];
                 
-                echo "Suivi(e) par " .$nbFollowers. " personnes";
+                echo "Suivi(e) par " .$followers. " personnes";
                 echo " | Suit " . $abonnements . " personnes";
                 ?></ul>
             </div>
         </div>
         <div class="savoirplus">
-            <button class="boutonprofil">publications</button>
-            
-            <button class="boutonprofil"><?php echo "<a href='apropos.php?pseudo=".$pseudo."'>à propos</a>";?></button>
-            <?php if($compte==0){ ?><button class='boutonprofil' onclick="window.location.href='suivre.php?id=<?php echo $id_utilisateur; ?>'">suivre</button> <?php } ?>
+            <!-- <button class="boutonprofil">publications</button> -->
+            <button class="boutonprofil" onclick="window.location.href='apropos.php?pseudo=<?php echo $pseudo; ?>'">à propos</button>
+            <?php if($compte==0){ 
+                $reponse = $bdd->query('SELECT COUNT(*) as nbFollow FROM IMAC_Suivre WHERE id='.$id_utilisateur_courant.' and id_IMAC_Utilisateur='.$id_utilisateur.'');
+                $donnees = $reponse->fetch();
+                $nbFollow = $donnees['nbFollow'];
+                $reponse->closeCursor();
+    
+                if($nbFollow==0){
+                    ?>
+                        <button class='boutonprofil' onclick="window.location.href='suivre.php?id=<?php echo $id_utilisateur; ?>'">suivre</button>
+                    <?php
+                }
+                else{
+                    ?>
+                        <button class='boutonprofil' onclick="window.location.href='suivre.php?id=<?php echo $id_utilisateur; ?>'">Arrêter de suivre</button>
+                    <?php
+                }
+            ?>
+                
+            <?php } ?>
         </div>
 
         <!--partie fil d'actualité-->
@@ -98,14 +120,25 @@
 
                         //echo "<button class='boutonpublication'>Commenter</button>"
                         //<!-- <button onclick="window.location.href = 'https://fr.w3docs.com/';">Ajouter un commentaire</button> -->
-                        echo "<a href='publication.php?id=" . $donnees['id'] . "'>
+                        echo "<br><br><a href='publication.php?id=" . $donnees['id'] . "'>
                         <button class='boutonpublication'>Commenter</button>
                         </a>"
                         ?>
                         <!-- Action : like -->
+                        <?php
+                            $utilisateurCourant = $pseudo_courant;
+                            $idPublicationLike = $donnees['id'];
+                            $reponseDeja = $bdd->query('SELECT COUNT(*) AS nbLikesEmis FROM IMAC_AimerPublication
+                            JOIN IMAC_Publication ON IMAC_AimerPublication.id = IMAC_Publication.id
+                            JOIN IMAC_Utilisateur ON IMAC_AimerPublication.id_IMAC_Utilisateur = IMAC_Utilisateur.id
+                            WHERE IMAC_Utilisateur.pseudo="'.$utilisateurCourant.'" AND IMAC_Publication.id='.$idPublicationLike.'');
+                            $donneesDeja = $reponseDeja->fetch();
+                            $reponseDeja->closeCursor();
+                            $nbLikesEmis = $donneesDeja['nbLikesEmis'];
+                        ?>
                         <div class="reaction">
-                            <form method="post" action="ajoutLike.php" id="like">
-                                <input type="submit" value="J'aime" />
+                            <form method="post" action="ajoutLike.php?id=<?php echo $donnees['id']; ?>" id="like">
+                                <input type="submit" value= <?php if($nbLikesEmis == 0){echo "J'aime";} else{echo "Je_n'aime_plus";} ?> />
                             </form>
                         </div>
                     </div>
@@ -115,7 +148,8 @@
                 $reponse->closeCursor();
             ?>
         </div>
-
+    
+	    <div id="haut"><a href="#" class="blanc">Aller en haut</a></div>
     </body>
 
 </html>

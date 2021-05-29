@@ -12,9 +12,10 @@
 ?>
     <body>
         <a href="index.php"><h1>Le Réseau</h1></a>
-        <div class="vosMessages">
-        <p>Vos Messages</p>
+        <div class="vosmessages">
+            <p>Vos Messages</p>
         </div>
+        <div class="centrer">
         <?php
             $reponse = $bdd->query('SELECT id_IMAC_Utilisateur_Recevoir, pseudo, photoProfil, id_IMAC_Utilisateur FROM IMAC_MessagePrive mp JOIN IMAC_Utilisateur u ON mp.id_IMAC_Utilisateur_Recevoir=u.id WHERE id_IMAC_Utilisateur="'.$id_utilisateur.'"');
             echo "<div class='listeMessages'>";
@@ -26,7 +27,17 @@
             }
             echo "</div>";
             $reponse->closeCursor();
-            echo "<hr><p>Ces personnes cherchent à vous contacter :</p>";
+            $reponse = $bdd->query('SELECT COUNT(*) as nb FROM IMAC_MessagePrive mp JOIN IMAC_Utilisateur u ON mp.id_IMAC_Utilisateur=u.id WHERE id_IMAC_Utilisateur_Recevoir="'.$id_utilisateur.'"');
+            $donnees = $reponse->fetch();
+            if($donnees['nb']==0){
+                echo "Personne ne vous a encore contacté, essayez par vous même :<br><br>";
+            }
+            else{
+                echo "<hr><p>".$donnees['nb']." personnes cherchent à vous contacter :</p><br>";
+            }
+            
+            $reponse->closeCursor();
+            
             $reponse = $bdd->query('SELECT pseudo, photoProfil, id_IMAC_Utilisateur FROM IMAC_MessagePrive mp JOIN IMAC_Utilisateur u ON mp.id_IMAC_Utilisateur=u.id WHERE id_IMAC_Utilisateur_Recevoir="'.$id_utilisateur.'"');
             while ($donnees = $reponse->fetch()) {
                 $reponse2 = $bdd->query('SELECT COUNT(*) as nb FROM IMAC_MessagePrive WHERE id_IMAC_Utilisateur="'.$id_utilisateur.'" and id_IMAC_Utilisateur_Recevoir="'.$donnees['id_IMAC_Utilisateur'].'"');
@@ -41,5 +52,6 @@
         ?>
 
         <button onclick="window.location.href='nouveauMessage.php'">Nouveau Message</button><br>
+        </div>
     </body>
 </html>

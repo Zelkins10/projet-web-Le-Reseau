@@ -14,7 +14,7 @@
         while ($donnees = $reponse->fetch()) { 
     ?>
 
-    <a href="profil.php?pseudo=<?php echo $donnees['pseudo']; ?>">
+    <a href="profil.php?pseudo=<?php echo $donnees['pseudo']; ?>" class="blanc">
         <?php 
             $filename='photoProfil/'.$donnees['id'].'.jpg';
             if(file_exists($filename)){

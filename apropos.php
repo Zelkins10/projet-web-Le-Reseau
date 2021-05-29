@@ -31,8 +31,8 @@
             </div>
         </div>
         <div class="savoirplus">
-            <button class="boutonprofil"><?php echo "<a href='profil.php?pseudo=".$pseudo."'>publications</a>";?></button>
-            <button class="boutonprofil">à propos</button>
+            <button class="boutonprofil" onclick="window.location.href='profil.php?pseudo=<?php echo $pseudo; ?>'">publications</button>
+            <!-- <button class="boutonprofil">à propos</button> -->
             <?php if($compte==0){ ?><button class='boutonprofil' onclick="window.location.href='suivre.php?id=<?php echo $id_utilisateur; ?>'">suivre</button> <?php } ?>
         </div>
         <ul class="info"><?php echo $donnees['prenom']; ?></ul>
