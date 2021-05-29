@@ -36,15 +36,25 @@
         }
         else {
             if(isset($_FILES["photoProfil"])){
+                
+                $reponse = $bdd->query('SELECT MAX(id) as id FROM IMAC_Utilisateur');
+                $donnees = $reponse->fetch();
+                $id=$donnees['id']+1;
+                $reponse->closeCursor();
                 $repertoireDestination = dirname(__FILE__)."/photoProfil/";
-                $nomDestination        = $pseudo.".jpg";
+                $nomDestination        = $id.".jpg";
                 if (is_uploaded_file($_FILES["photoProfil"]["tmp_name"])) {
                     rename($_FILES["photoProfil"]["tmp_name"],
                     $repertoireDestination.$nomDestination);
                     chmod($repertoireDestination.$nomDestination, 0755);
                 }
             }
-            $reponse = $bdd->query('INSERT INTO IMAC_Utilisateur(pseudo, MotDePasse, prenom, nom, dateNaissance, email, bio, photoProfil) values("'.$pseudo.'", "'.$motDePasse.'", "'.$prenom.'", "'.$nom.'", "'.$dateNaissance.'", "'.$email.'", "'.$bio.'", "photoProfil/'.$nomDestination.'")');
+            $reponse = $bdd->query('SELECT MAX(id) as id FROM IMAC_Utilisateur');
+            $donnees = $reponse->fetch();
+            $id=$donnees['id'];
+            $reponse->closeCursor();
+
+            $reponse = $bdd->query('INSERT INTO IMAC_Utilisateur(pseudo, MotDePasse, prenom, nom, dateNaissance, email, bio, photoProfil) values("'.$pseudo.'", "'.$motDePasse.'", "'.$prenom.'", "'.$nom.'", "'.$dateNaissance.'", "'.$email.'", "'.$bio.'", "photoProfil/'.$id.'")');
             $reponse->closeCursor();
             $_SESSION['pseudo']=$pseudo;
             header ('location: formInscription.php?erreur=aucune');

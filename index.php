@@ -5,6 +5,12 @@
 ?>
 	<body>
 		<h1>Le Réseau</h1>
+		<div class="barre">
+			<form method="post" action="recherche.php" class="form-inline">
+				<input class="recherche" type="text" name="barre" placeholder="Saisir pseudo à rechercher" required />
+				<input type="submit" value="valider"/>
+			</form>
+		</div>
 		<?php
 			if(isset($_SESSION['pseudo'])){
 				$pseudo=$_SESSION['pseudo'];

@@ -29,9 +29,15 @@
         header('location: formParametres.php?erreur=email');
     }
     else {
+        
+        $reponse = $bdd->query('SELECT id FROM IMAC_Utilisateur WHERE pseudo="'.$_SESSION['pseudo'].'"');
+        $donnees = $reponse->fetch();
+        $id=$donnees['id']+1;
+        $reponse->closeCursor();
+
         if(isset($_FILES["photoProfil"])){
             $repertoireDestination = dirname(__FILE__)."/photoProfil/";
-            $nomDestination        = $pseudo.".jpg";
+            $nomDestination        = $id.".jpg";
             if (is_uploaded_file($_FILES["photoProfil"]["tmp_name"])) {
                 rename($_FILES["photoProfil"]["tmp_name"],
                 $repertoireDestination.$nomDestination);

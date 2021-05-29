@@ -11,6 +11,7 @@
     $id_utilisateur=$donnees['id'];
 ?>
     <body>
+        <a href="index.php"><h1>Le Réseau</h1></a>
         <div class="vosMessages">
         <p>Vos Messages</p>
         </div>

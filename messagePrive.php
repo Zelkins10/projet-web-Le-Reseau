@@ -13,6 +13,7 @@
     $id_destinataire=$_GET['id'];
 ?>
     <body>
+        <a href="index.php"><h1>Le Réseau</h1></a>
         <?php
             $reponse = $bdd->query('SELECT pseudo, photoProfil, image, texte, date, id_IMAC_Utilisateur FROM IMAC_MessagePrive mp JOIN IMAC_Utilisateur u ON mp.id_IMAC_Utilisateur=u.id WHERE (id_IMAC_Utilisateur="'.$id_utilisateur.'" and id_IMAC_Utilisateur_Recevoir="'.$id_destinataire.'") or (id_IMAC_Utilisateur="'.$id_destinataire.'" and id_IMAC_Utilisateur_Recevoir="'.$id_utilisateur.'")');
             while ($donnees = $reponse->fetch()) {

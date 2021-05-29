@@ -19,9 +19,14 @@
     $photoProfil=$donnees['photoProfil'];
 ?>
     <body>
+        <a href="index.php"><h1>Le Réseau</h1></a>
         <!--partie présentation profil-->
         <div class="profil">
-            <img src="<?php echo $donnees['photoProfil']; ?>" alt="bug" class="photoprofil">
+            <?php
+                if(file_exists($photoProfil)){
+                    echo "<img class='photoprofil' src='".$photoProfil."' alt='bug'>";
+                }
+            ?>
             <div class="infoprofil">
                 <ul class="pseudo"><?php echo $donnees['pseudo']; ?></ul>
                 <ul class="info"><?php echo $donnees['bio']; ?></ul>
@@ -58,7 +63,11 @@
             ?>
                 <div class="publication">
                     <div class="profil">
-                        <img class="photo" src="<?php echo $photoProfil; ?>">
+                        <?php
+                            if(file_exists($photoProfil)){
+                                echo "<img class='photo' src='".$photoProfil."' alt='bug'>";
+                            }
+                        ?>
                         <div class="infoprofil">
                             <div class="auteur"> <?php echo $pseudo ?></div>
                             <div class="date"> <?php echo $donnees['date']; ?></div>
@@ -66,7 +75,9 @@
                     </div>
                     <?php 
                         $filename='publication/'.$donnees['id'].'.jpg';
-                        if(file_exists($filename)){echo "<img class='photoprofil' src='".$donnees['image']."'>";}
+                        if(file_exists($filename)){
+                            echo "<img class='photoprofil' src='".$donnees['image']."'>";
+                        }
                     ?>
                     <div class="contenu"><?php echo $donnees['texte']; ?></div>
                     <div class="reaction">

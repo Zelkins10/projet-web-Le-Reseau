@@ -7,6 +7,7 @@
     }
 ?>
     <body>
+        <a href="index.php"><h1>Le Réseau</h1></a>
         <div class="publication">
         <form method="post" action="publier.php" enctype="multipart/form-data">
             <input type="textarea" name="texte" placeholder="Veuillez écrire votre message" required><br>

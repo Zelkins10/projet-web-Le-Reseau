@@ -17,14 +17,14 @@
     $reponse->closeCursor();
     ?>
     <body>
-        <!--bandeau réseau-->
-        <div class="bandeau">
-            <img class="logo">
-            <p><a href="index.php">Le Réseau</a></p>
-        </div>
+        <a href="index.php"><h1>Le Réseau</h1></a>
 
         <div class="profil">
-            <img src="<?php echo $donnees['photoProfil']; ?>" alt="bug" class="photoprofil">
+            <?php
+                if(file_exists($donnees['photoProfil'])){
+                    echo "<img class='photoprofil' src='".$donnees['photoProfil']."' alt='bug'>";
+                }
+            ?>
             <div class="infoprofil">
                 <ul class="pseudo"><?php echo $donnees['pseudo']; ?></ul>
                 <ul class="info"><?php echo $donnees['bio']; ?></ul>

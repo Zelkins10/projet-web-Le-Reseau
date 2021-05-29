@@ -14,7 +14,9 @@
         <?php
             $reponse = $bdd->query('SELECT id_IMAC_Utilisateur, pseudo, photoProfil FROM IMAC_Suivre s JOIN IMAC_Utilisateur u ON s.id_IMAC_Utilisateur=u.id WHERE s.id="'.$id_utilisateur.'"');
             while ($donnees = $reponse->fetch()) {
-                echo "<img class='photo' src='".$donnees['photoProfil']."'>";
+                if(file_exists($donnees['photoProfil'])){
+                    echo "<img class='photo' src='".$donnees['photoProfil']."' class='photoprofil' alt='bug'>";
+                }
                 echo "<a href='messagePrive.php?id=".$donnees['id_IMAC_Utilisateur']."'>".$donnees['pseudo']."</a>";
             }
             $reponse->closeCursor();

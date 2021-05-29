@@ -14,7 +14,7 @@
     else{
     ?>
 	<body>
-        <h1><a href="index.php">Le Réseau</a></h1>
+        <a href="index.php"><h1>Le Réseau</h1></a>
         <form class="inscriptionForm" method="post" action="inscription.php" enctype="multipart/form-data">
 			<input type="email" name="email" placeholder="Adresse Mail" required><br>
 			<input type="text" name="pseudo" placeholder="Pseudo" required><br>
