@@ -12,10 +12,7 @@
 <body id="top">
 
     <!-- en-tête Le Réseau-->
-    <div class="bandeau">
-        <img class="logo">
-        <p><a href="index.php">Le Réseau</a></p>
-    </div>
+    <a href="index.php"><h1>Le Réseau</h1></a>
 
     <section>
         <article class="publication"> <!-- pour centrer les éléments sur la page -->
@@ -31,7 +28,14 @@
 
                 <!-- Auteur de la publication -->
                 <div>
-                    <a href="profil.php?pseudo=<?php echo $donnees['pseudo']; ?>"> <img class="photo" src="<?php echo "photoProfil/" . $donnees['pseudo'] . ".jpg"; ?>" id="photo_profil">  <?php echo $donnees['pseudo']; ?> </a>
+                    <a href="profil.php?pseudo=<?php echo $donnees['pseudo']; ?>">
+                        <?php
+                            if(file_exists($donnees['photoProfil'])){
+                                echo "<img class='photo' src='".$donnees['photoProfil']."' alt='bug'>";
+                            }
+                        ?>
+                        <?php echo $donnees['pseudo']; ?>
+                    </a>
                 </div> <!-- mettre une pp vierge de type "par défaut" à l'auteur s'il n'a pas de pp personnalisée -->
 
                 <!-- <p> -->
@@ -119,7 +123,7 @@
             <br>
 
             <?php
-            $reponse = $bdd->query('SELECT IMAC_Commentaire.id AS idCommSQL, contenu, date, IMAC_Commentaire.id_IMAC_Utilisateur, id_IMAC_Publication, (SELECT COUNT(*) FROM IMAC_AimerCommentaire WHERE IMAC_AimerCommentaire.id = IMAC_Commentaire.id) AS likesDuComm, pseudo
+            $reponse = $bdd->query('SELECT DISTINCT IMAC_Commentaire.id AS idCommSQL, contenu, date, IMAC_Commentaire.id_IMAC_Utilisateur, id_IMAC_Publication, photoProfil, (SELECT COUNT(*) FROM IMAC_AimerCommentaire WHERE IMAC_AimerCommentaire.id = IMAC_Commentaire.id) AS likesDuComm, pseudo
             FROM IMAC_Commentaire
             LEFT JOIN IMAC_AimerCommentaire ON IMAC_Commentaire.id = IMAC_AimerCommentaire.id
             JOIN  IMAC_Utilisateur ON IMAC_Commentaire.id_IMAC_Utilisateur = IMAC_Utilisateur.id
@@ -129,13 +133,21 @@
                 $idComm = $donnees['idCommSQL'];
                 $pseudo = $donnees['pseudo'];
                 $comm = $donnees['contenu'];
-                $dateEnvoi = $donnees['date']
+                $dateEnvoi = $donnees['date'];
+                $photoProfil = $donnees['photoProfil'];
             ?>
                 <div class="comm">
                     <p>
                         
                         <!-- pp de l'auteur du comm et son pseudo -->
-                        <a href="profil.php?pseudo=<?php echo $pseudo; ?>"> <img class="photo" src="<?php echo "photoProfil/" . $pseudo . ".jpg"; ?>" id="photo_profil">  <?php echo $pseudo; ?> </a> <!-- Lien vers le profil de l'auteur du commentaire -->
+                        <a href="profil.php?pseudo=<?php echo $pseudo; ?>">
+                            <?php
+                                if(file_exists($photoProfil)){
+                                    echo "<img class='photo' src='".$photoProfil."' alt='bug'>";
+                                }
+                                echo $pseudo;
+                            ?>
+                        </a> <!-- Lien vers le profil de l'auteur du commentaire -->
                         <!-- Affichage de la date de mise en ligne du commentaire -->
                         <?php echo "(le " . $dateEnvoi . ")" ?>
                         <!-- Bouton pour supprimer le commentaire -->
