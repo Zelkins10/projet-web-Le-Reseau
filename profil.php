@@ -101,7 +101,7 @@
                     <?php 
                         $filename='publication/'.$donnees['id'].'.jpg';
                         if(file_exists($filename)){
-                            echo "<img class='photoprofil' src='".$donnees['image']."'>";
+                            echo "<img class='photoPublication' src='".$donnees['image']."'>";
                         }
                     ?>
                     <div class="contenu"><?php echo $donnees['texte']; ?></div>
