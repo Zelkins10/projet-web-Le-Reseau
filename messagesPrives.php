@@ -40,10 +40,10 @@
                 if($donnees2['nb']==0){ // nombre de messages que nous avons envoyé à cette personne qui nous a envoyé un message
                     $nb=$nb+1;
                 }
+                $reponse2->closeCursor();
 
             }
 
-            $reponse2->closeCursor();
             $reponse->closeCursor();
 
             if($nb==0){
