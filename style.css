@@ -214,10 +214,8 @@ input[type=textarea]{
 }
 
 .photoprofil{
-	height: 100px;
-	width:100px;
-	border: 2px solid #F2F2F2;
-	border-radius: 50%;
+	height: 50%;
+	width:50%;
 }
 
 .infoprofil{
