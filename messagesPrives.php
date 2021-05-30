@@ -58,8 +58,8 @@
                 $reponse2 = $bdd->query('SELECT COUNT(*) as nb FROM IMAC_MessagePrive WHERE id_IMAC_Utilisateur="'.$id_utilisateur.'" and id_IMAC_Utilisateur_Recevoir="'.$donnees['id_IMAC_Utilisateur'].'"');
                 $donnees2 = $reponse2->fetch();
                 $reponse2->closeCursor();
-                echo "<a href='messagePrive.php?id=".$donnees['id_IMAC_Utilisateur']."' class='blanc'>";
                 if($donnees2['nb']==0){
+                    echo "<a href='messagePrive.php?id=".$donnees['id_IMAC_Utilisateur']."' class='blanc'>";
                     if(file_exists($donnees['photoProfil'])){
                         echo "<img class='photo' src='".$donnees['photoProfil']."'>";
                     }
