@@ -46,7 +46,7 @@
             $reponse->closeCursor();
 
             if($nb==0){
-                echo "<br><br>Personne ne vous a encore contacté, essayez par vous même :<br><br>";
+                echo "<br><br>Aucune nouvelle personne cherche à vous contacter, essayez par vous même :<br><br>";
             }
             else{
                 echo "<hr><p>".$nb." personnes cherchent à vous contacter :</p><br>";
