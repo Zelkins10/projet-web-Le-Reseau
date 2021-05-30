@@ -56,6 +56,10 @@ a{
 	color: #F2F2F2 !important;
 }
 
+.bleu{
+	color: #00BFFF !important;
+}
+
 #fixe{
 	position: fixed;
 	bottom: 0;
@@ -204,6 +208,10 @@ input[type=textarea]{
 
 .dateMessage{
 	text-align: right;
+}
+
+.bottom{
+	margin-bottom: 200px;
 }
 
 /* ============================ PROFIL ============================*/

@@ -25,13 +25,13 @@
 			<?php 
 				switch($erreur){
 					case "existePas":
-						echo "Votre pseudo et/ou votre email ne sont pas enregistré, pour s'inscrire cliquez <a href='formInscription.php' class='blanc'>ici</a>";
+						echo "Votre pseudo et/ou votre email ne sont pas enregistré, pour s'inscrire cliquez <a href='formInscription.php' class='bleu'>ici</a>";
 						break;
 					case "dejaCo":
 						echo "Vous êtes déjà connecté en tant que ".$_SESSION['pseudo']." !";
 						break;
 				}
-                echo "<p>Pas de compte ? <a href='formInscription.php' class='blanc'>Inscrivez-vous maintenant !</a></p>";
+                echo "<p>Pas de compte ? <a href='formInscription.php' class='bleu'>Inscrivez-vous maintenant !</a></p>";
 			}?>
 		</p>
 	</body>
