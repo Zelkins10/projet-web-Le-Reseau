@@ -2,15 +2,18 @@
 	session_start();
 	include 'bdd.php';
 	include 'header.php';
+    $pseudo=$_GET['pseudo'];
     if(isset($_SESSION['pseudo'])){
         $pseudo_courant=$_SESSION['pseudo'];
-    }
-    $pseudo=$_GET['pseudo'];
-    if($pseudo_courant!=$pseudo){
-        $compte=0;
+        if($pseudo_courant!=$pseudo){
+            $compte=0;
+        }
+        else{
+            $compte=1;
+        }
     }
     else{
-        $compte=1;
+        $compte=-1;
     }
     $reponse = $bdd->query('SELECT * FROM IMAC_Utilisateur WHERE pseudo="'.$pseudo.'"');
     $donnees = $reponse->fetch();

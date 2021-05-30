@@ -2,15 +2,18 @@
 	session_start();
 	include 'bdd.php';
 	include 'header.php';
+    $pseudo=$_GET['pseudo'];
     if(isset($_SESSION['pseudo'])){
         $pseudo_courant=$_SESSION['pseudo'];
-    }
-    $pseudo=$_GET['pseudo'];
-    if($pseudo_courant!=$pseudo){
-        $compte=0;
+        if($pseudo_courant!=$pseudo){
+            $compte=0;
+        }
+        else{
+            $compte=1;
+        }
     }
     else{
-        $compte=1;
+        $compte=-1;
     }
     $reponse = $bdd->query('SELECT * FROM IMAC_Utilisateur WHERE pseudo="'.$pseudo_courant.'"');
     $donnees = $reponse->fetch();
@@ -55,7 +58,7 @@
         <div class="savoirplus">
             <!-- <button class="boutonprofil">publications</button> -->
             <button class="boutonprofil" onclick="window.location.href='apropos.php?pseudo=<?php echo $pseudo; ?>'">à propos</button>
-            <?php if($compte==0){ 
+            <?php if($compte==0){
                 $reponse = $bdd->query('SELECT COUNT(*) as nbFollow FROM IMAC_Suivre WHERE id='.$id_utilisateur_courant.' and id_IMAC_Utilisateur='.$id_utilisateur.'');
                 $donnees = $reponse->fetch();
                 $nbFollow = $donnees['nbFollow'];

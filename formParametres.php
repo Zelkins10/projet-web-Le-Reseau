@@ -9,21 +9,28 @@
         $erreur=NULL;
     }
     if($erreur=="aucune"){
-        echo "<body><h1><a href='index.php'>Le Réseau</a></h1><p>Vos préférneces ont bien été modifiées ".$_SESSION['pseudo']." !</p></body></html>";
+        echo "<body><a href='index.php'><h1>Le Réseau</h1></a><p>Vos préférences ont bien été modifiées ".$_SESSION['pseudo']." !</p></body></html>";
     }
     else{
     ?>
 	<body>
         <a href="index.php"><h1>Le Réseau</h1></a>
-        <form class="inscriptionForm" method="post" action="inscription.php" enctype="multipart/form-data">
-			<input type="email" name="email" placeholder="Adresse Mail" required><br>
-			<input type="text" name="pseudo" placeholder="Pseudo" required><br>
-			<input type="password" name="motDePasse" placeholder="Mot de Passe" required><br>
-			<input type="textarea" name="bio" placeholder="Bio"><br>
+		<?php 
+			$reponse = $bdd->query('SELECT * FROM IMAC_Utilisateur WHERE pseudo="'.$_SESSION['pseudo'].'"');
+            $donnees = $reponse->fetch();
+		?>
+        <form class="inscriptionForm" method="post" action="parametres.php" enctype="multipart/form-data">
+			<input type="email" name="email" value="<?php echo $donnees['email']; ?>" required> *<br>
+			<input type="text" name="pseudo" value="<?php echo $donnees['pseudo']; ?>" required> *<br>
+			<input type="password" name="motDePasseActuel" placeholder="Mot de passe actuel" required> *<br>
+			<input type="password" name="nouveauMotDePasse" placeholder="Nouveau mot de passe"> (A remplir uniquement si vous souhaitez changer de mot de passe.)<br><br>
+			<input type="textarea" name="bio" value="<?php echo $donnees['bio']; ?>"> *<br>
 			<input type="file" name="photoProfil"><br>
 			<input type="submit" value="Valider"/>
 			<input type="reset" value="Annuler"/>
+			<br><p>Tous les champs suivis d'une étoile sont obligatoires mais ne nécessitent pas forcément d'être modifiés.</p>
 		</form>
+		<?php $reponse->closeCursor(); ?>
     <body>
     <p>
 		<?php 
@@ -36,6 +43,9 @@
 					break;
 				case "email":
 					echo "Cet email est déjà utilisé.";
+					break;
+				case "mdp":
+					echo "Le mot de passe actuel que vous avez saisi ne correspond pas.";
 					break;
                 }
 			}?>
