@@ -9,7 +9,7 @@
         $erreur=NULL;
     }
     if($erreur=="aucune"){
-        echo "<body><h1><a href='index.php'>Le Réseau</a></h1><p>Bienvenue ".$_SESSION['pseudo']." !</p></body></html>";
+        echo "<body><a href='index.php'><h1>Le Réseau</h1></a><p>Bienvenue ".$_SESSION['pseudo']." !</p></body></html>";
     }
     else{
 ?>
