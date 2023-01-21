@@ -10,21 +10,21 @@ Users following each other (“friends”) are able to communicate through priva
 In addition, an administrator space allows interactions between users to be moderated (deletion of content, _etc._).
 
 ## Screenshots
-![home page as guest](https://github.com/Zelkins10/projet-web-Le-Reseau/tree/main/docs/img/home_page_guest.png)
+![home page as guest](./docs/img/home_page_guest.png)
 
-![home page as connected user - 1](https://github.com/Zelkins10/projet-web-Le-Reseau/tree/main/docs/img/home_page_connected_1.png)
+![home page as connected user - 1](./docs/img/home_page_connected_1.png)
 
-![home page as connected user - 2](https://github.com/Zelkins10/projet-web-Le-Reseau/tree/main/docs/img/home_page_connected_2.png)
+![home page as connected user - 2](./docs/img/home_page_connected_2.png)
 
-![post writing](https://github.com/Zelkins10/projet-web-Le-Reseau/tree/main/docs/img/post_writing.png)
+![post writing](./docs/img/post_writing.png)
 
-![DM](https://github.com/Zelkins10/projet-web-Le-Reseau/tree/main/docs/img/DM.png)
+![DM](./docs/img/DM.png)
 
-![user profile page](https://github.com/Zelkins10/projet-web-Le-Reseau/tree/main/docs/img/user_profile_page.png)
+![user profile page](./docs/img/user_profile_page.png)
 
-![post](https://github.com/Zelkins10/projet-web-Le-Reseau/tree/main/docs/img/post.png)
+![post](./docs/img/post.png)
 
-![settings](https://github.com/Zelkins10/projet-web-Le-Reseau/tree/main/docs/img/settings.png)
+![settings](./docs/img/settings.png)
 
 ## Hosted website
 https://lucasdavid.fr/projet-web-Le-Reseau/
